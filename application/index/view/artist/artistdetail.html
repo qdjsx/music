@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if !empty($artist)}
+<title>{$artist['name']}</title>
+{/if}
+<link rel="stylesheet" href="/static/css/liststyle.css">
+ <!-- Bootstrap Core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- <link rel="stylesheet" href="/static/css/person/common.css" type="text/css"> -->
+	<!-- <link rel="stylesheet" href="/static/css/person/login.css" type="text/css"> -->
+	<!-- <link rel="stylesheet" href="/static/css/person/cropper.min.css" type="text/css"> -->
+	 <link rel="stylesheet" href="/static/css/person/user_center.css" type="text/css">
+	 <script src="/static/js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<!-- 顶部区域 -->
+	<div class="header" style="background: #45B39D;height: 110px;">
+		<div class="hd-wrap box-center clearfix">
+				
+			<!-- logo -->
+			<h1 class="logo fl" style="width: 300px;border: none;">
+				<a href="/index/index/index">
+					<img src="/static/images/logo.png">
+				</a>
+				<span class="logo-text">歌手</span>
+			</h1>			
+			<!-- 右侧账号信息begin -->
+	        <div class="hd-right fr">			
+				<ul class="hd-info">				
+					<li class="user-info">
+						{if !empty($Think.session.username)}
+						您好！
+						{$Think.session.username}
+						{else}
+						您未登录, 请前往
+						{/if}
+						<span class="user-name" id="userNickname"></span>
+						<i class="icon-common"></i>
+					</li>
+					{if !empty($Think.session.username)}
+					<li>
+						<em class="separate">|</em><a class="loginOut" href="/index/user/tuichu">退出</a><em class="separate">|</em>
+					</li>
+					{/if}
+					<li><a href="/index/index/index">首页</a></li>			
+				</ul>
+			</div>
+	    	<!-- 右侧账号信息end -->
+		</div>
+	</div>
+<!-- header end -->
+	<div class="bg_box">
+		<div class="main">
+			<div class="malbum">
+				{if !empty($artist)}
+				<div class="data_cover"> 
+					<img src="{$artist['cover_url']}" alt="{$artist['name']}" >
+				</div>
+				<div class="data_cont"><h1>{$artist['name']}</h1></div>
+				
+				<div class="data_info">
+					<p>歌手：
+						
+						<a href="" target="_blank" title="运动">{$artist['name']}</a>						
+					</p>
+					<p>简介：
+						
+						{$artist['description']}						
+					</p>							
+				</div>
+				
+				<div class="data_actions">
+					
+					<div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1517485084064">
+						<a href="#" class="bds_more" data-cmd="more"></a>
+						<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+						<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+						<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+						<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+						<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+						<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+					</div>
+					<script>
+						window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+					</script>
+				</div>
+				{/if}
+				<div class="data_layout">
+					<div class="data_layout_main x5_player">
+						<ul class="songlist_header" >
+
+							<li class="songlist_header_name" style="padding-left: 40px;">   歌曲</li>
+							<li class="songlist_header_author">&emsp;所需积分</li>
+							<li class="songlist_artist">所在专辑</li>
+						</ul>
+						{if !empty($songs)}
+						{foreach $songs as $val}
+						<ul class="songlist_header list" id="song-1" did="313">
+							<li class="songlist_songname"> 
+								<span>{$val.id}</span>
+								<a href="/index/songs/songsdetail?sid={$val.id}"  target="_blank">{$val['name']}</a>
+							</li>
+							<li class="songlist_artist" style="padding-left: -10px;">{$val['score']}</li>
+							{if !empty($album)}
+							{foreach $album as $aval}
+							{if $val['album_id'] == $aval['id']}
+							<li class="songlist_header_author" style="padding-left: 0;">
+								<a href="/index/album/albumdetail?alid={$aval['id']}">{$aval['name']}</a>
+							</li>
+							{else}
+							<li class="songlist_header_author" style="padding-left: 0;">
+								<a href="/index/album/albumdetail?alid=" > </a>
+							</li>
+							{/if}
+							{/foreach}
+							{/if}
+							
+						</ul>
+						{/foreach}
+						{/if}
+						<div id="page" style="text-align: center;">
+							<a class="aLink" href="{$allPage['first']}">首页</a>
+							<a class="aLink" href="{$allPage['prev']}">前一页</a>
+							<a class="aLink" href="{$allPage['next']}">后一页</a>
+							<a class="aLink" href="{$allPage['end']}">尾页</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<!-- Bootstrap Core JavaScript -->
+   	<script src="/static/js/bootstrap.min.js"></script>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://www.miguvideo.com/wap/resource/pc/memberCenter/account_settings.jsp -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="all">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>玄机音乐 -- 修改头像</title>  
+    <script src="/static/js/person/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="/static/css/person/common.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/person/login.css" type="text/css">    
+    <link rel="stylesheet" href="/static/css/person/cropper.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/person/user_center.css" type="text/css">
+    <!-- @author author | @designer designer | @pm pm -->
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="header" style="background: #45B39D">
+	<div class="hd-wrap box-center clearfix">
+			
+		<!-- logo -->
+		<h1 class="logo fl" >
+			<a href="/index/index/index">
+				<img src="/static/images/logo.png" style="margin-top: -8px;">
+			</a>
+			<span class="logo-text">个人中心</span>
+		</h1>			
+		<!-- 右侧账号信息begin -->
+        <div class="hd-right fr">			
+			<ul class="hd-info">				
+				<li class="user-info">
+					您好！{$Think.session.username}<span class="user-name" id="userNickname"></span><i class="icon-common"></i>
+				</li>
+				<li>
+					<em class="separate">|</em><a class="loginOut" href="/index/user/tuichu">退出</a><em class="separate">|</em>
+				</li>
+				<li><a href="/index/index/index">首页</a></li>					
+			</ul>
+		</div>
+    	<!-- 右侧账号信息end -->
+	</div>
+</div>
+
+<!-- 顶部header end -->
+
+	<!-- 内容区begin -->
+	<div class="main-wrap box-center clearfix">
+		
+		<!-- 左侧内容区begin -->
+                <input type="hidden" class="isLogin" value="1">
+    <div class="side-left fl">
+        <div class="user-box">
+            <p class="user-pic"><span class="pic-mask"></span><img id="userPhoto" src="{$Think.session.picture}"></p>
+            <p>
+				{$Think.session.username}
+			</p>
+            <p>
+				用户积分：{$Think.session.grade}
+			</p>
+        </div>
+       
+        <div class="side-link">
+            <ul>
+                <li class="link-item link02 ">
+                	<a href="/index/user/selfinfo"><i class="icon-link icon-set"></i>账号设置</a>
+                </li>
+                <li class="link-item link02 active">
+                	<a href="/index/user/tx"><i class="icon-link icon-center"></i>修改头像</a>
+                </li>
+                <li class="link-item link03 ">
+                	<a href="/index/user/mymenu"><i class="icon-link icon-collect"></i>我的歌单</a>
+                </li>
+                 <!--<li class="link-item link04"><a href="/wap/resource/pc/memberCenter/my_record.jsp"><i class="icon-link icon-record"></i>我的预约</a></li>-->               
+                <li class="link-item link05 ">
+                	<a href="/index/user/myselect"><i class="icon-link icon-play"></i>我收藏的歌单</a>
+                </li>
+           </ul>
+       </div>
+    </div>
+	
+<!-- 左侧内容区end -->	
+      		
+	    <!-- 右侧内容区begin -->
+		<div class="main-right fr">
+			<div class="account-settings">
+			
+				<div style="border-bottom: 1px solid #ccc;padding-bottom: 30px;">
+					<h1 style="font-size: 36px;">
+						修改头像
+					</h1>
+				</div>
+				<div style="margin-top: 30px;">
+					<img src="{$Think.session.picture}" alt="" style="width: 200px;height: 200px;border-radius: 30px;">
+				</div>
+				<div style="margin-top: 20px;">
+					<form action="/index/user/upload" enctype="multipart/form-data" method="post" id="txForm">
+						<input type="file" name="image" id="touxiang" /> <br>
+						<input type="submit" value="上传" id="sc" style="border-radius: 15px;width: 100px;height: 30px;margin-top: 20px;background: #B5A075;border:none;" />
+					</form>
+				</div>
+				
+				
+			</div>
+			<!-- 敬请期待begin -->
+			<!-- 敬请期待end -->
+		</div>	
+                <!-- 右侧内容区end -->	
+                
+	</div>
+	<!-- 内容区end -->
+   
+</div>
+<div class="publishSuc display-none" id="tipMsg">发布成功</div>
+
+<!-- 头像裁剪弹窗end -->
+
+<script type="text/javascript" src="/static/js/person/ajax.js"></script>
+<!-- 日期选择 -->
+<script src="/static/js/person/ymdPicker.js"></script>
+<!-- 地区选择 -->
+<script src="/static/js/person/distpicker.data.js"></script>
+<script src="/static/js/person/distpicker.js"></script>
+<script src="/static/js/person/cropper.min.js"></script>
+<script src="/static/js/person/user_center.js"></script>
+<script src="/static/js/person/account_settings.js"></script>
+<script src="/static/js/person/modifpwd.js"></script>
+<script src="/static/js/person/common.js"></script>
+<script src="/static/js/person/user.js"></script>
+<script src="/static/js/person/login.js"></script>
+<script src="/static/js/person/register.js"></script>
+<script src="/static/js/person/md5_min.js"></script>
+<script src="/static/js/person/out.js"></script>
+
+</body></html>

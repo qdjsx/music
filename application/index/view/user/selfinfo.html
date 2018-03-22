@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://www.miguvideo.com/wap/resource/pc/memberCenter/account_settings.jsp -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="all">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>玄机音乐 -- 账号设置</title>  
+    <script src="/static/js/person/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="/static/css/person/common.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/person/login.css" type="text/css">    
+    <link rel="stylesheet" href="/static/css/person/cropper.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/person/user_center.css" type="text/css">
+    <!-- @author author | @designer designer | @pm pm -->
+</head>
+<body>
+<!--判断是否登录-->
+<input type="hidden" id="isLogin" value="1">
+<input type="hidden" id="islogin" value="1">
+<input type="hidden" id="phone" value="18437975192">
+<input type="hidden" id="userMobile" value="18437975192">
+<!--登录用户useId-->
+<input type="hidden" id="userId" value="258775361">
+<div class="container">
+
+	<!-- 顶部header begin -->
+	<!-- IE党 >
+<!--[if lte IE 9]>
+<style>
+    :root .r-ie { display: block; }	
+</style>
+<![endif]-->
+<div class="r-ie">
+	<div class="r-ie-vertical">
+		<i class="r-ie-logo"></i>
+		<div class="r-ie-box">
+			<i class="r-ie-cor1"></i>
+			<i class="r-ie-cor2"></i>
+			<p>当前浏览器不支持本活动<br>
+				请升级到最新版本后再尝试</p>
+		</div>
+		<div class="r-ie-up">
+			<a href="http://windows.microsoft.com/zh-cn/windows/downloads" class="r-ie-link"><i class="r-ie-icon-up"></i>点击这里升级</a>
+		</div>
+	</div>
+	<i class="r-ie-middle"></i>
+</div>
+
+<!--判断是否登录-->
+
+<input type="hidden" id="isLogin" value="1">     
+<input type="hidden" class="userId" value="184****5192">
+<input type="hidden" id="isGkLogin" value="">
+
+<div class="header" style="background: #45B39D">
+	<div class="hd-wrap box-center clearfix">
+			
+		<!-- logo -->
+		<h1 class="logo fl">
+			<a href="/index/index/index">
+				<img src="/static/images/logo.png" style="margin-top: -8px;">
+			</a>
+			<span class="logo-text">个人中心</span>
+		</h1>			
+		<!-- 右侧账号信息begin -->
+        <div class="hd-right fr">			
+			<ul class="hd-info">				
+				<li class="user-info">
+					您好！{$Think.session.username}<span class="user-name" id="userNickname"></span><i class="icon-common"></i>
+				</li>
+				<li>
+					<em class="separate">|</em><a class="loginOut" href="/index/user/tuichu">退出</a><em class="separate">|</em>
+				</li>
+				<li><a href="/index/index/index">首页</a></li>					
+			</ul>
+		</div>
+    	<!-- 右侧账号信息end -->
+	</div>
+</div>
+
+
+<!-- 登录框 -->
+<div class="bg_box display-none" id="paysuccess">
+    <div class="modal-mask"></div>
+    <div class="migu-modal">
+        <div class="modal-show" id="close_ms">
+          <div class="iframe-box">
+            <div class="close" id="close"><img src="picture/close_btn.png" alt=""></div>
+           <div class="iframe-ui"></div>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- 登录框 -->
+
+<!--发布成功提示-->
+<div class="publishSuc display-none" id="publishSuc">发布成功</div>
+<script>
+   $(".loginButton").click(function () {
+         $("#paysuccess").show();
+   });
+   $(".cancel").click(function(){
+         $("#paysuccess").hide();
+   });
+   $(".btn_login span").click(function () {
+         var index = $(this).index();
+         $(".modal-body .mainmodal").hide();
+         $(".modal-body .mainmodal").eq(index).show();
+   });
+</script>
+<!-- 顶部header end -->
+
+	<!-- 内容区begin -->
+	<div class="main-wrap box-center clearfix">
+		
+		<!-- 左侧内容区begin -->
+                <input type="hidden" class="isLogin" value="1">
+    <div class="side-left fl">
+        <div class="user-box">
+            <p class="user-pic"><span class="pic-mask"></span><img id="userPhoto" src="{$Think.session.picture}"></p>
+            <p>
+				{$Think.session.username}
+			</p>
+			<p>
+				用户积分：{$Think.session.grade}
+			</p>
+            
+        </div>
+        
+        <div class="side-link">
+            <ul>
+                <li class="link-item link02 active">
+                	<a href="/index/user/selfinfo"><i class="icon-link icon-set"></i>账号设置</a>
+                </li>
+                <li class="link-item link02 ">
+                	<a href="/index/user/tx"><i class="icon-link icon-center"></i>修改头像</a>
+                </li>
+                <li class="link-item link03 ">
+                	<a href="/index/user/mymenu"><i class="icon-link icon-collect"></i>我的歌单</a>
+                </li>
+                 <!--<li class="link-item link04"><a href="/wap/resource/pc/memberCenter/my_record.jsp"><i class="icon-link icon-record"></i>我的预约</a></li>-->               
+                <li class="link-item link05 ">
+                	<a href="/index/user/myselect"><i class="icon-link icon-play"></i>我收藏的歌单</a>
+                </li>
+           </ul>
+       </div>
+    </div>
+	
+<!-- 左侧内容区end -->	
+      		
+	    <!-- 右侧内容区begin -->
+		<div class="main-right fr">
+			<div class="account-settings">
+				<div class="ui-tab-tabs J-tabview">
+					<a href="javascript:;" class="ui-tab-tab checked" data-rel="userInfo">个人信息</a>
+					<a href="javascript:;" class="ui-tab-tab" data-rel="modifyPsw">修改密码</a>
+				</div>	
+				<div class="ui-tab-contents">
+					<!-- 个人信息begin -->
+					<div id="userInfo" class="ui-tab-content userinfo-content">
+						<!-- 头像裁剪begin -->
+						<div class="header-crop">
+							<div class="user-img"><img id="setuserPhoto" src="{$Think.session.picture}"></div>
+							<p class="txt">我的头像</p>
+						</div>
+						<!-- 头像裁剪end -->
+						<div class="form-box">
+							  <div class="nickname_length" id="nickname_length">用户昵称不能超过10位</div>
+							   <div class="nickname_length" id="nickname_empty">用户昵称不能为空</div>
+							<div class="line nickname-box">
+								<div class="item">昵称</div>
+								<div class="cont">
+									<input class="input-text" id="nickName" type="text" value="{$Think.session.username}">
+								</div>								
+							</div>
+							<div class="line sex-box">
+								<div class="item">性别</div>
+								<div class="cont">
+									<input id="sex-male" name="sex" type="radio" value="1" required="" {if $data.sex == 1} checked {/if}>
+									<label class="ui-radio" for="sex-male"></label><label class="label-text" for="sex-male">男</label>
+									<input id="sex-female" name="sex" type="radio" value="0" required="" {if $data.sex == 0} checked {/if}>
+									<label class="ui-radio" for="sex-female"></label><label class="label-text" for="sex-female">女</label>
+								</div>
+							</div>
+                            <div class="nickname_length" id="birth_length">用户出生日期不能为空</div>
+							<div class="line birthday-box">
+								<div class="item">生日</div>
+								<div class="cont">
+									<select name="year" id="brthyear">
+										<option value="0">选择年份</option><option value="2018">2018年</option><option value="2017">2017年</option><option value="2016">2016年</option><option value="2015">2015年</option><option value="2014">2014年</option><option value="2013">2013年</option><option value="2012">2012年</option><option value="2011">2011年</option><option value="2010">2010年</option><option value="2009">2009年</option><option value="2008">2008年</option><option value="2007">2007年</option><option value="2006">2006年</option><option value="2005">2005年</option><option value="2004">2004年</option><option value="2003">2003年</option><option value="2002">2002年</option><option value="2001">2001年</option><option value="2000">2000年</option><option value="1999">1999年</option><option value="1998">1998年</option><option value="1997">1997年</option><option value="1996">1996年</option><option value="1995">1995年</option><option value="1994">1994年</option><option value="1993">1993年</option><option value="1992">1992年</option><option value="1991">1991年</option><option value="1990">1990年</option><option value="1989">1989年</option><option value="1988">1988年</option><option value="1987">1987年</option><option value="1986">1986年</option><option value="1985">1985年</option><option value="1984">1984年</option><option value="1983">1983年</option><option value="1982">1982年</option><option value="1981">1981年</option><option value="1980">1980年</option><option value="1979">1979年</option><option value="1978">1978年</option><option value="1977">1977年</option><option value="1976">1976年</option><option value="1975">1975年</option><option value="1974">1974年</option><option value="1973">1973年</option><option value="1972">1972年</option><option value="1971">1971年</option><option value="1970">1970年</option><option value="1969">1969年</option><option value="1968">1968年</option><option value="1967">1967年</option><option value="1966">1966年</option><option value="1965">1965年</option><option value="1964">1964年</option><option value="1963">1963年</option><option value="1962">1962年</option><option value="1961">1961年</option><option value="1960">1960年</option><option value="1959">1959年</option><option value="1958">1958年</option><option value="1957">1957年</option><option value="1956">1956年</option><option value="1955">1955年</option><option value="1954">1954年</option><option value="1953">1953年</option><option value="1952">1952年</option><option value="1951">1951年</option><option value="1950">1950年</option><option value="1949">1949年</option><option value="1948">1948年</option><option value="1947">1947年</option><option value="1946">1946年</option><option value="1945">1945年</option><option value="1944">1944年</option><option value="1943">1943年</option><option value="1942">1942年</option><option value="1941">1941年</option><option value="1940">1940年</option><option value="1939">1939年</option>
+									</select>
+									<select name="month" id="brthmouth"><option value="0">选择月份</option></select>
+									<select name="day" id="brthday"><option value="0">选择日期</option></select>					    
+								</div>								
+							</div>
+							<div class="line phone-box">
+								<div class="item">手机</div>
+								<div class="cont">
+									<input class="input-text" id="phoneNumber" type="text" name="phone" value="{$data.phone}">
+									<span id="phone1"></span>
+																	   
+								</div>								
+							</div>
+                            <div class="nickname_length" id="area_length">用户所在地不能为空</div>
+							<div class="line address-box">
+								<div class="item">所在地</div>
+								<div class="cont">
+									<div id="distpicker" class="distpicker">
+										<div class="form-group">
+										  <label class="sr-only" for="province1">Province</label>
+										  <select class="form-control" id="province1" name="sheng"></select>
+										</div>
+										<div class="form-group">
+										  <label class="sr-only" for="city1">City</label>
+										  <select class="form-control" id="city1" name="shi"></select>
+										</div>
+										<div class="form-group">
+										  <label class="sr-only" for="district1">District</label>
+										  <select class="form-control" id="district1" name="qv"></select>
+										</div>
+									</div>	
+									<!-- <input class="input-text" id="area" type="text" value=""> -->
+
+								</div>								
+							</div>
+		                                        <div class="line desc-box">
+								<div class="item">简介</div>
+								<div class="cont">
+									<textarea id="userDesc" name="autograph">{$data.autograph}</textarea>
+                                    <p class="number"><span class="num">0</span>/<span class="total-num">120</span></p>
+								</div>								
+							</div>
+							<div class="line btn-box">
+								<div class="item">&nbsp;</div>
+								<div class="cont">
+								    <a href="javascript:;" class="btn-golden btn-save" id="userInfoSave">保存</a>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<!-- 修改个人资料 -->
+					<script type="text/javascript">
+						$(function(){
+							$('#phoneNumber').blur(function(){
+								var action = '/index/user/phone';
+								var value = $('#phoneNumber').val();
+								// alert(value);
+								$.ajax({
+									type:'post',
+									url:action,
+									data:{phone:value},
+									dataType:'json',
+									success:success
+								});
+								function success(data)
+								{
+									if (data.state == 2) {
+										$('#phone1').html('手机号不能为空').css({color:'red',fontSize:20,lineHeight:'40px'});
+									}
+									if (data.state == 1) {
+										$('#phone1').html('手机号格式不正确').css({color:'red',fontSize:12});
+									}
+									if (data.state == 0) {
+										$('#phone1').html('').css({color:'blue',fontSize:12});
+									}
+								}	
+							});
+							$('#userInfoSave').click(function(){
+
+								// username
+								var username = $('#nickName').val();
+								// sex
+								if($('#sex-male').prop("checked")){
+									var sex = $('#sex-male').val();
+								}
+
+								if($('#sex-female').prop("checked")){
+									var sex = $('#sex-female').val();
+								}
+								// birthday
+								var year = $('#brthyear').val();
+								var month = $('#brthmouth').val();
+								var day = $('#brthday').val();
+								var birthday = year + '-' + month + '-' + day;
+								if(year == 0 || month == 0 || day == 0){
+									return false;
+								}
+								// 	phone
+								var phone = $('#phoneNumber').val();
+								// place
+								var province1 = $('#province1').val();
+								var city1 = $('#city1').val();
+								var district1 = $('#district1').val();
+								var place = province1 + '-' + city1 + '-' + district1;
+								// alert(place);
+								// autograph
+								var autograph = $('#userDesc').val();
+								$.ajax({
+									type:'post',
+									url:'/index/user/updateinfo',
+									data:{username:username,sex:sex,birthday:birthday,phone:phone,place:place,autograph:autograph},
+									dataType:'json',
+									success:success
+								});
+								function success(data)
+								{
+									
+									if (data.state == 1) {
+										alert('修改成功');
+									}
+									if (data.state == 0) {
+										alert('修改失败');
+									}
+								}
+								// alert(autograph);
+							});
+						});
+					</script>
+					<!-- 个人信息end -->
+					
+					<!-- 修改密码begin -->
+					<div id="modifyPsw" class="ui-tab-content modify-password" style="display: none">
+						<div class="form-box">
+							<div class="line phone-box">
+								<div class="item">手机号码</div>
+								<div class="cont">
+								 <p class="phone-number" id="mobile">{$data.phone}</p>								 
+								</div>								
+							</div>
+						    
+							<div class="line message-box">
+								<div class="item">短信验证码</div>
+								<div class="cont">
+									<input class="input-text w200" id="dyMsgCode" type="text" value="">
+									<span id="phoneyzm"></span>
+									<a href='javascript:;' style="color: #000;padding: 10px;	"  id="getcode" onclick="getcode()">获取验证码</a>									
+								</div>								
+							</div>
+							<div class="line password-box">
+								<div class="item">新密码</div>
+								<div class="cont">
+									<input class="input-text" id="pwd1" type="password" value="">	
+									<span id="mi"></span>						
+								</div>								
+							</div>
+							<div class="line password-box">
+								<div class="item">确认新密码</div>
+								<div class="cont">
+									<input class="input-text" id="pwd2" type="password" value="">
+									<span id="mimi"></span>							
+								</div>								
+							</div>
+							  <input type="hidden" name="sessionid" id="mobileSid" value="">
+							<div class="line btn-box">
+								<div class="item">&nbsp;</div>
+								<div class="cont">
+								    <a href="javascript:;" class="btn-golden btn-save" id="btnup">修改</a>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						// 获取短信验证码
+						function getcode()
+						  {
+						  	// var haoma = $('#mobile').html();
+						  	// alert(haoma);
+						  	// return false;
+						    $('#getcode').text('60秒后重新获取');
+						    
+						    $('#getcode').removeAttr('onclick');
+						    var phone = $('#mobile').html();
+						      //写个定时修改文本settime
+						    var time = 59;
+						    var into = setInterval(function(){
+
+						      $('#getcode').text(time+'秒后重新获取');
+						      time =time -1;
+						      if(time<=-1){
+						        clearInterval(into);
+						        $('#getcode').text('获取验证码');
+						        $('#getcode').attr('onclick');
+						      }
+						    },1000);
+						    //ajax    参数1,url  index1.php   参数2, 数据   1234565432
+							$.get('/index/user/phonecode',{phone:phone},function(date){console.log(date);});
+						  }
+						 
+						  $(function(){
+						  	 // 判断短信验证码与填写的是否一样
+						  	$('#dyMsgCode').blur(function(){
+						  		var value = $('#dyMsgCode').val();
+						  		
+						  		$.ajax({
+									type:'post',
+									url:'/index/user/code',
+									data:{phoneyzm:value},
+									dataType:'json',
+									success:success
+								});
+								function success(data)
+								{
+									// console.log(data);
+									if (data.state == 1) {
+										$('#phoneyzm').html('验证码不正确').css({color:'red',fontSize:12});
+									}
+									if (data.state == 0) {
+										$('#phoneyzm').html('').css({color:'blue',fontSize:12});
+									}
+								}
+						  	});
+						  	//密码
+							$('#pwd1').blur(function () {
+								var action = '/index/user/password';
+								
+								//读取input框中的value值
+								var value = $('#pwd1').val();
+								$.ajax({
+									type:'post',
+									url:action,
+									data:{password:value},
+									dataType:'json',
+									success:success
+								});
+								function success(data)
+								{
+									if (data.pwd == 1) {
+										$('#mi').html('密码不能为纯数字且不能少于6位').css({color:'red',fontSize:12});
+									}
+									if (data.pwd == 0) {
+										$('#mi').html('密码可用').css({color:'blue',fontSize:12});
+									}
+								}	
+							});
+							//确认密码
+							$('#pwd2').blur(function () {
+								var password = $('#pwd1').val();
+								var repassword = $('#pwd2').val();
+								if (password != repassword) {
+					           		$('#mimi').html('输入两次密码不一致').css({color:'red',fontSize:12});
+					           		return false;
+					       		}
+					       		if (password == repassword) {
+					           		$('#mimi').html('').css({color:'blue',fontSize:12});
+					       		}
+							});
+							// 上传数据库
+							$('#btnup').click(function(){
+								var yzm = $('#dyMsgCode').val();
+								var pwd1 = $('#pwd1').val();
+								var pwd2 = $('#pwd2').val();
+								var pyzm = $('#phoneyzm').html();
+								var mi = $('#mi').html();
+								var mimi = $('#mimi').html();
+								if(pwd1 == '' || pwd2 == '' || yzm == '' || mi != '密码可用' || mimi != '' || pyzm != ''){
+									return false;
+								}
+								$.ajax({
+									type:'post',
+									url:'/index/user/xiugai',
+									data:{password:pwd1,confirm:pwd2},
+									dataType:'json',
+									success:success
+								});
+								function success(data)
+								{
+									if(data.state == 2){
+										alert('两次密码不一样');
+									}
+									if (data.state == 1) {
+										alert('修改密码成功');
+									}
+									if (data.state == 0) {
+										alert('修改密码失败');
+									}
+								}
+							});
+						  });
+					</script>
+					<!-- 修改密码end -->
+						
+				</div>
+			</div>
+			<!-- 敬请期待begin -->
+			<!-- 敬请期待end -->
+		</div>	
+                <!-- 右侧内容区end -->	
+                    
+	</div>
+	<!-- 内容区end -->
+   
+</div>
+
+
+<!-- 头像裁剪弹窗end -->
+
+<script type="text/javascript" src="/static/js/person/ajax.js"></script>
+<!-- 日期选择 -->
+<script src="/static/js/person/ymdpicker.js"></script>
+<!-- 地区选择 -->
+<script src="/static/js/person/distpicker.data.js"></script>
+<script src="/static/js/person/distpicker.js"></script>
+<script src="/static/js/person/cropper.min.js"></script>
+<script src="/static/js/person/user_center.js"></script>
+<script src="/static/js/person/account_settings.js"></script>
+<script src="/static/js/person/modifpwd.js"></script>
+<script src="/static/js/person/common.js"></script>
+<script src="/static/js/person/user.js"></script>
+<script src="/static/js/person/login.js"></script>
+<script src="/static/js/person/register.js"></script>
+<script src="/static/js/person/md5_min.js"></script>
+<script src="/static/js/person/out.js"></script>
+
+</body></html>

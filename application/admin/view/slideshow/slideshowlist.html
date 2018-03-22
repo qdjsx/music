@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            轮播图管理
+        </title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="/static/admin/css/x-admin.css" media="all">
+         <script src="/static/admin/js/jquery-2.1.0.js" charset="utf-8"></script>
+        <style>
+            td , th{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="x-nav">
+            <span class="">
+              <a><cite>首页-</cite></a>
+              <a><cite>轮播图管理-</cite></a>
+              <a><cite>轮播列表</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+        </div>
+        <div class="x-body">
+            <xblock><!-- <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button> -->
+             <button class="layui-btn layui-btn-danger">轮播图列表</button>
+        <!--     <button class="layui-btn" onclick="admin_add('添加用户','adminadd.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>  -->
+            <span class="x-right" id="num" style="line-height:40px"></span></xblock>
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <!-- <th>
+                            <input type="checkbox" name="" value="">
+                        </th> -->
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            封面
+                        </th>
+                        <th>
+                            跳转路径
+                        </th>
+                        <th>
+                            描述
+                        </th>
+<!--                         <th>
+                            歌曲
+                        </th> -->
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="x-link">
+               
+
+
+
+                </tbody>
+            </table>
+             <div id="page" style="text-align: center">
+                <a href="" class="aaa">首页</a>
+                <a href="" class="aaa">上一页</a>
+                <a href="" class="aaa">下一页</a>
+                <a href="" class="aaa">尾页</a>
+            </div>
+        </div>
+         
+        <script src="/static/admin/lib/layui/layui.js" charset="utf-8"></script>
+        <script src="/static/admin/js/x-layui.js" charset="utf-8"></script>
+        <script>
+            layui.use(['layer','form'], function(){
+                $ = layui.jquery;//jquery
+              // lement = layui.element();//面包导航
+              // laypage = layui.laypage;//分页
+              layer = layui.layer;//弹出层
+              form = layui.form();//弹出层
+
+
+          })
+              //以上模块根据需要引入
+
+
+            var oTbody = document.getElementById('x-link');
+            var aA = document.getElementsByClassName('aaa');
+            $.ajax({
+                type:'get',
+                url:'/admin/slideshow/list',
+                data:{page:1},
+                dataType:'json',
+                success:success
+            });
+
+            function success(data)
+            {
+                // console.log(data);
+                //z这个data是啥玩意？是不是就是list.php得到的数据
+                oTbody.innerHTML = '';
+                //转化为js的对象
+                var obj = JSON.parse(data);
+                // console.log(obj);
+                var num = document.getElementById('num');
+                num.innerHTML = '共有数据：' + obj.count + '条';
+                for (var i in obj.data) {
+                    //创建tr
+                    var oTr = document.createElement('tr');
+                    //创建td
+                    var oTd1 = document.createElement('td');
+                    //var oInput = document.createElement('input');
+                    //创建td
+                    var oTd2 = document.createElement('td');
+                    var oTd3 = document.createElement('td');
+                    var oTd4 = document.createElement('td');
+                    var oTd5 = document.createElement('td');
+                    var oA1 = document.createElement('a');
+                    var oA2 = document.createElement('a');
+                    var oI1 = document.createElement('i');
+                    var oI2 = document.createElement('i');
+                    // 给每个td赋值
+                    //oInput.value = obj.data[i].role_id;
+                    //oInput.type = 'checkbox';
+                     oTd1.innerHTML = obj.data[i].sid;
+                    oTd2.innerHTML = "<img style=\"width:50px;height:50px;\" src=" + obj.data[i].cover_url +" >";
+                    oTd3.innerHTML = obj.data[i].url;
+                    oTd4.innerHTML = obj.data[i].des;
+                    oTd5.className = 'td-manage';
+                    oA1.title = '编辑';
+                    oA1.href = "slideshowedit.html?sid=" + obj.data[i].sid;
+                    // oA1.onclick = "feedback_edit(\'处理\',\'slideshowedit.html?sid=" + obj.data[i].sid + "\',\'4\',\'\',\'510\')";
+                    // oA1.onclick = '/admin/slideshow/slideshowedit?sid=' + obj.data[i].sid;
+                    oA1.className = 'ml-5';
+                    oA1.style.textDecoration = 'none';
+                    oI1.className = 'layui-icon';
+                    oI1.innerHTML = '&#xe642;';
+
+                    oA2.title = '删除';
+                    oA2.href = 'javascript:;';
+
+                    oA2.style.textDecoration = 'none';
+                    oI2.className = 'layui-icon';
+                    oI2.innerHTML = '&#xe640;';
+                    //然后再将td放到tr里面 //
+                    oTr.appendChild(oTd1);
+                    oTr.appendChild(oTd2);
+                    oTr.appendChild(oTd3);
+                    oTr.appendChild(oTd4);
+                    oTr.appendChild(oTd5);
+                   // oTd1.appendChild(oInput);
+                    oTd5.appendChild(oA1);
+                    oTd5.appendChild(oA2);
+                    oA1.appendChild(oI1);
+                    oA2.appendChild(oI2);
+                    oTbody.appendChild(oTr);
+
+                    oA2.onclick = function()
+                    {
+
+                        del(this,oTd1.innerHTML);
+                        var oBtn = this.parentNode.parentNode;
+                        oTbody.removeChild(oBtn);
+                    }
+
+                }
+                //通过obj.allPage依次给上面每个a标签的href属性设置
+                var oPage =  obj.allPage;
+                var i = 0;
+                for (var name in oPage) {
+                    //console.log(name);
+                    aA[i].href = 'javascript:test(\'' +oPage[name] +'\')';
+                    i++;
+                }
+            }
+            function test(url)
+            {
+                $.ajax({
+                    type:'get',
+                    url:url,
+                    data:null,
+                    success:success
+                });
+            }
+
+
+
+            // 编辑
+            function feedback_edit (title,url,id,w,h) {
+                x_admin_show(title,url,w,h); 
+            }
+            
+            //删除
+            /*删除*/
+            function del(obj,id){
+                $.ajax({
+                    type:'get',
+                    url:'/admin/slideshow/del_slide',
+                    dataType:'json',
+                    data:{sid:id},
+                    success:success1
+
+                });
+
+                function success1(data)
+                {
+                    // var obj = JSON.parse(data);
+                    // console.log(data);
+                    if (data['status']==1){
+                        layer.alert("删除轮播图成功", {icon: 6,time:2000});
+                    }
+                }
+            }
+    </script>
+    </body>
+</html>

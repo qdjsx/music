@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Browse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ 	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="/static/css/font-awesome.css" rel="stylesheet"> 
+	<!-- jQuery -->
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="/static/css/icon-font.min.css" type='text/css' />
+	<!-- //lined-icons -->
+	 <!-- Meters graphs -->
+	<script src="/static/js/jquery-1.10.2.min.js"></script>
+	<!--  ======== 音乐播放器 =========== -->
+	<link rel="stylesheet" href="/static/css/stylesheets/style.css">
+	<script src="/static/js/jquery-1.7.2.min.js"></script>
+</head> 
+   
+ <body class="sticky-header left-side-collapsed"  onload="initMap()">
+    <section>
+      	<!-- ========================= 左侧导航栏 ===================  -->
+      <!-- left side start-->
+		<div class="left-side sticky-left-side">
+			<!--logo and iconic logo start-->
+			<div class="logo">
+				<h1><a href="index.html">Musi<span>c</span></a></h1>
+			</div>
+			<div class="logo-icon text-center">
+				<a href="index.html">M </a>
+			</div>
+			<!--logo and iconic logo end-->
+			<div class="left-side-inner">
+				<!--sidebar nav start-->
+				<ul class="nav nav-pills nav-stacked custom-nav">
+					<li class="active">
+						<a href="index.html"><i class="lnr lnr-home"></i><span>首页</span></a>
+					</li>
+					<li>
+						<!-- <a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-th"></i><span>歌单</span></a> -->
+						<a href="/index/index/menu"><i class="lnr lnr-users"></i> <span>歌单</span></a>
+					</li>
+					<li>
+						<a href="browse.html"><i class="lnr lnr-music-note"></i> <span>专辑</span></a>
+					</li>	
+					<li>
+						<a href="radio.html"><i class="lnr lnr-users"></i> <span>歌手</span></a>
+					</li> 
+					<li>
+						<a href="radio.html"><i class="camera"></i> <span>Mv</span></a>
+					</li>
+					<li class="menu-list">
+						<a href="#"><i class="lnr lnr-heart"></i>  <span>创建的歌单</span></a> 
+						<ul class="sub-menu-list">
+							<li><a href="radio.html">我喜欢的</a></li>
+						</ul>
+					</li>									
+					<li class="menu-list">
+						<a href="browse.html"><i class="lnr lnr-indent-increase"></i> <span>收藏的歌单</span></a>  
+						<ul class="sub-menu-list">
+							<li><a href="browse.html">休闲娱乐来一下</a> </li>
+							<li><a href="404.html">你过来啊</a> </li>
+						</ul>
+					</li>
+					<li>
+						<a href="blog.html"><i class="lnr lnr-book"></i><span>我的主页</span></a>
+					</li>
+					<li>
+						<a href="typography.html"><i class="lnr lnr-pencil"></i> <span>Typography</span></a>
+					</li>
+					<li class="menu-list">
+						<a href="contact.html"><i class="fa fa-thumb-tack"></i><span>关于我们</span></a>
+						<ul class="sub-menu-list">
+							<li><a href="contact.html">Location</a> </li>
+						</ul>
+					</li>     
+				</ul>
+				<!--sidebar nav end-->
+			</div>
+		</div>
+		<!-- ====================== APP推荐页面效果 ========================  -->
+		<!-- app-->
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog facebook" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+					</div>
+					<div class="modal-body">
+						<div class="app-grids">
+							<div class="app">
+								<div class="col-md-5 app-left mpl">
+									<h3>玄机音乐!</h3>
+									<p>你最好的选择</p>
+									<div class="app-devices">
+										<h5>下载地址</h5>
+										<a href="#"><img src="/static/images/1.png" alt=""></a>
+										<a href="#"><img src="/static/images/2.png" alt=""></a>
+										<div class="clearfix"> </div>
+									</div>
+								</div>
+								<div class="col-md-7 app-image">
+									<img src="/static/images/apps.png" alt="">
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //app-->
+
+		<!-- ======================= 注册 ==================== -->
+		<!-- signup -->
+		<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content modal-info">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+					</div>
+					<div class="modal-body modal-spa">
+						<div class="sign-grids">
+							<div class="sign">
+								<div class="sign-left">
+									<ul>
+										<li><a class="fb" href="#"><i></i>QQ</a></li>
+										<li><a class="goog" href="#"><i></i>微信</a></li>
+										<li><a class="linkin" href="#"><i></i>微博</a></li>
+									</ul>
+								</div>
+								<div class="sign-right">
+									<form action="#" method="post">
+										<h3>请注册 </h3>
+										<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+										<input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
+										<input type="text" value="Email id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">	
+										<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">	
+										
+										<input type="submit" value="注册" >
+									</form>
+								</div>
+								<div class="clearfix"></div>								
+							</div>
+							<p>By logging in you agree to our <span>Terms and Conditions</span> and <span>Privacy Policy</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //signup -->
+
+		<!-- left side end-->
+		<!-- main content start-->
+		<div class="main-content">
+			<!--  =========================== 头部区域 ========================= -->
+			<!-- header-starts -->
+			<div class="header-section">
+			<!--toggle button start-->
+			<a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+			<!--toggle button end-->
+			<!--notification menu start -->
+				<div class="menu-right">
+					<div class="profile_details">	
+					   <!-- ============================================  搜索  =========================  -->
+					  	<div class="col-md-4 serch-part">
+							<div id="sb-search" class="sb-search">
+								<form action="#" method="post">
+									<input class="sb-search-input" placeholder="Search" type="search" name="search" id="search">
+									<input class="sb-search-submit" type="submit" value="">
+									<span class="sb-icon-search"> </span>
+								</form>
+							</div>
+						</div>
+					 <!-- search-scripts -->
+						<script src="/static/js/classie.js"></script>
+						<script src="/static/js/uisearch.js"></script>
+						<script>
+							new UISearch( document.getElementById( 'sb-search' ) );
+						</script>
+					<!-- //search-scripts -->
+
+					 <!-- ======================================  音乐播放 ================================-->
+					  	<div class="col-md-4 player">
+							<div class="audio-player">
+								<audio id="audio-player"  controls="controls">
+								<source src="http://wechat.zhuchenxij.top/music.mp3" type="audio/ogg"></source>
+								<source src="http://wechat.zhuchenxij.top/music.mp3" type="audio/mpeg"></source>
+								<source src="http://wechat.zhuchenxij.top/music.mp3" type="audio/ogg"></source>
+								<source src="http://wechat.zhuchenxij.top/music.mp3" type="audio/mpeg"></source></audio>
+							</div>
+						<!---->
+							<script type="text/javascript">
+								$(function(){
+									$('#audio-player').mediaelementplayer({
+										alwaysShowControls: true,
+										features: ['playpause','progress','volume'],
+										audioVolume: 'horizontal',
+										iPadUseNativeControls: true,
+										iPhoneUseNativeControls: true,
+										AndroidUseNativeControls: true
+									});
+								 });
+							</script>
+						<!--audio-->
+							<link rel="stylesheet" type="text/css" media="all" href="/static/css/audio.css">
+							<script type="text/javascript" src="/static/js/mediaelement-and-player.min.js"></script>
+						<!---->
+							<!--//-->
+							<!-- =========================  上一首 和 下一首按钮 ===============================-->
+							<ul class="next-top">
+								<li><a class="ar" href="#"> <img src="/static/images/arrow.png" alt=""/></a></li>
+								<li><a class="ar2" href="#"><img src="/static/images/arrow2.png" alt=""/></i></a></li>		
+						 	</ul>	
+						</div>
+						<!--  ===========================================  登录  ================================== -->
+						<div class="col-md-4 login-pop">
+							<div id="loginpop"> 
+								<a href="#" id="loginButton"><span>登录 <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a>
+								<a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5"><i class="fa fa-sign-in"></i></a>
+								<div id="loginBox">  
+									<form action="#" method="post" id="loginForm">
+										<fieldset id="body">
+											<fieldset>
+												  <label for="email">账 号</label>
+												  <input type="text" name="email" id="email">
+											</fieldset>
+											<fieldset>
+												<label for="password">密 码</label>
+												<input type="password" name="password" id="password">
+											</fieldset>
+											<input type="submit" id="login" value="登录">
+											<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>
+										</fieldset>
+										<span><a href="#">忘记密码?</a></span>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				<!-- ---- -->
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!--notification menu end -->
+			<!-- //header-ends -->
+
+		<!-- //header-ends -->
+			<div id="page-wrapper">
+				<div class="inner-content">
+				      <div class="music-browse">
+					<!--albums-->
+					<!-- pop-up-box --> 
+							<link href="/static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all">
+							<script src="/static/js/jquery.magnific-popup.js" type="text/javascript"></script>
+							 <script>
+									$(document).ready(function() {
+									$('.popup-with-zoom-anim').magnificPopup({
+										type: 'inline',
+										fixedContentPos: false,
+										fixedBgPos: true,
+										overflowY: 'auto',
+										closeBtnInside: true,
+										preloader: false,
+										midClick: true,
+										removalDelay: 300,
+										mainClass: 'my-mfp-zoom-in'
+									});
+									});
+							</script>		
+					<!--//pop-up-box -->
+						<div class="browse">
+
+								<div class="tittle-head two">
+									<h3 class="tittle">最新歌曲 <span class="new">New</span></h3>
+									<a href="browse.html"><h4 class="tittle third">See all</h4></a>
+									<div class="clearfix"> </div>
+								</div>
+								{if !empty($result)}
+								{foreach $result as $val}
+								<div class="col-md-3 browse-grid">
+									<a  href="single.html"><img src="{$val->cover_url}" title="allbum-name"></a>
+									 <a href="single.html"><i class="glyphicon glyphicon-play-circle"></i></a>
+									<a class="sing" href="single.html">{$val->name}</a>
+								</div>
+								{/foreach}
+								{/if}
+							
+						</div>
+						<!-- =====================================  底部轮播  =================== -->
+						<!--body wrapper start-->
+						<div class="review-slider">
+								<div class="tittle-head">
+									<h3 class="tittle">最新专辑 <span class="new"> New</span></h3>
+									<div class="clearfix"> </div>
+								</div>
+								<ul id="flexiselDemo1">
+								{if !empty($result)}
+								{foreach $result as $val}
+								<li>
+									<a href="single.html"><img src="{$val->cover_url}" alt=""/></a>
+									<div class="slide-title"><h4>{$val->name} </div>
+									<div class="date-city">
+										<h5>Jan-02-16</h5>
+										<div class="buy-tickets">
+											<a href="single.html">Coming</a>
+										</div>
+									</div>
+								</li>
+								{/foreach}
+								{/if}
+							</ul>
+							<script type="text/javascript">
+						$(window).load(function() {
+							
+						  $("#flexiselDemo1").flexisel({
+								visibleItems: 5,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: false,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 2
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 3
+									},
+									tablet: { 
+										changePoint:800,
+										visibleItems: 4
+									}
+								}
+							});
+							});
+						</script>
+						<script type="text/javascript" src="/static/js/jquery.flexisel.js"></script>	
+						</div>
+								</div>
+							<div class="clearfix"></div>
+						<!--body wrapper end-->
+
+					</div>
+			  <!--body wrapper end-->
+			     <div class="footer two">
+				<div class="footer-grid">
+					<h3>Navigation</h3>
+					<ul class="list1">
+					  <li><a href="index.html">Home</a></li>
+					  <li><a href="radio.html">All Songs</a></li>
+					  <li><a href="browse.html">Albums</a></li>
+					  <li><a href="radio.html">New Collections</a></li>
+					  <li><a href="blog.html">Blog</a></li>
+					  <li><a href="contact.html">Contact</a></li>
+				    </ul>
+				</div>
+				<div class="footer-grid">
+					<h3>Our Account</h3>
+				    <ul class="list1">
+					  <li><a href="#" data-toggle="modal" data-target="#myModal5">Your Account</a></li>
+					  <li><a href="#">Personal information</a></li>
+					  <li><a href="#">Addresses</a></li>
+					  <li><a href="#">Discount</a></li>
+					  <li><a href="#">Orders history</a></li>
+					  <li><a href="#">Addresses</a></li>
+					  <li><a href="#">Search Terms</a></li>
+				    </ul>
+				</div>
+				<div class="footer-grid">
+					<h3>Our Support</h3>
+					<ul class="list1">
+					  <li><a href="contact.html">Site Map</a></li>
+					  <li><a href="#">Search Terms</a></li>
+					  <li><a href="#">Advanced Search</a></li>
+					  <li><a href="#">Mobile</a></li>
+					  <li><a href="contact.html">Contact Us</a></li>
+					  <li><a href="#">Mobile</a></li>
+					  <li><a href="#">Addresses</a></li>
+				    </ul>
+				  </div>
+					  <div class="footer-grid">
+						<h3>Newsletter</h3>
+						<p class="footer_desc">Nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p>
+						<div class="search_footer">
+						 <form>
+						   <input type="text" placeholder="Email...." required="">
+						  <input type="submit" value="Submit">
+						  </form>
+						</div>
+					 </div>
+					 <div class="footer-grid footer-grid_last">
+						<h3>About Us</h3>
+						<p class="footer_desc">Diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat enim ad minim veniam,.</p>
+						<p class="f_text">Phone:  &nbsp;&nbsp;&nbsp;00-250-2131</p>
+						<p class="email">Email : &nbsp;<span><a href="mailto:mail@example.com">info(at)mailing.com</a></span></p>	
+					 </div>
+					 <div class="clearfix"> </div>
+				</div>
+			</div>
+        <!--footer section start-->
+			<!-- <footer>
+			   <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+			</footer> -->
+        <!--footer section end-->
+
+      <!-- main content end-->
+   </section>
+  
+<script src="/static/js/jquery.nicescroll.js"></script>
+<script src="/static/js/scripts.js"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

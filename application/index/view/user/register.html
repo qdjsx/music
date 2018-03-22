@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>请注册</title>
+<link rel="stylesheet" href="/static/css/style.css" />
+<script type="text/javascript" src="/static/js/jquery-1.11.3.min.js"></script>
+<body>
+
+<div class="register-container">
+	<h1>请注册</h1>
+	
+	<div class="connect">
+		<p>You are welcome to register</p>
+	</div>
+	
+	<form   id="register">
+		<div>
+			<input type="text" name="username" class="username" placeholder="您的用户名" autocomplete="off"/><span id="tip"></span>
+			<!-- <label id="username-error" class="error" for="username">必须填写用户名</label> -->
+		</div>
+		<div>
+			<input type="password" name="password" class="password" placeholder="输入密码" oncontextmenu="return false" onpaste="return false" />
+		</div>
+		<div>
+			<input type="password" name="confirm_password" class="confirm_password" placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false" />
+		</div>
+		<div>
+			<input type="text" name="phone_number" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
+			<!-- <label id="number-error" class="error" for="number">请输入手机号码</label> -->
+		</div>
+		<div>
+			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
+			<!-- <label id="email-error" class="error" for="email">请输入邮箱地址</label> -->
+		</div>
+
+		<button id="submit" type="submit">注 册</button>
+	</form>
+	<a href="http://www.sq.com/index/user/login">
+		<button type="button" class="register-tis">已经有账号？</button>
+	</a>
+
+</div>
+
+</body>
+
+</html>

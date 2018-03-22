@@ -1,0 +1,713 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>乐库</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ 	<!-- Bootstrap Core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="/static/css/font-awesome.css" rel="stylesheet"> 
+	<!-- jQuery -->
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="/static/css/icon-font.min.css" type='text/css' />
+	<!-- //lined-icons -->
+	 <!-- Meters graphs -->
+	<script src="/static/js/jquery-1.10.2.min.js"></script>
+	<script src="/static/admin/js/jquery-2.1.0.js" charset="utf-8"></script>
+</head> 
+   
+ <body class="sticky-header left-side-collapsed"  onload="initMap()">
+    <section>
+    	<!-- ========================= 左侧导航栏 ===================  -->
+      <!-- left side start-->
+		<div class="left-side sticky-left-side">
+			<!--logo and iconic logo start-->
+			<div class="logo">
+				<h1><a href="/index/index/index">Musi<span>c</span></a></h1>
+			</div>
+			<div class="logo-icon text-center">
+				<a href="/index/index/index">M </a>
+			</div>
+			<!--logo and iconic logo end-->
+			<div class="left-side-inner">
+				<!--sidebar nav start-->
+				<ul class="nav nav-pills nav-stacked custom-nav">
+					<li class="active">
+						<a href="/index/index/index"><i class="lnr lnr-home"></i><span>首页</span></a>
+					</li>
+					<li>
+						<a href="/index/songs/allsong"><i class="glyphicon glyphicon-headphones"></i> <span>乐库</span></a>
+					</li>
+					<li>
+						<a href="/index/menu/menu"><i class="lnr lnr-users"></i> <span>歌单</span></a>
+					</li>
+					<li>
+						<a href="/index/album/album"><i class="lnr lnr-music-note"></i> <span>专辑</span></a>
+					</li>	
+					<li>
+						<a href="/index/artist/artist"><i class="lnr lnr-users"></i> <span>歌手</span></a>
+					</li> 
+					<li>
+						<a href="/index/mv/mv"><i class="camera"></i> <span>Mv</span></a>
+					</li>
+					<li class="menu-list">
+						<a href="#"><i class="lnr lnr-heart"></i>  <span>创建的歌单</span></a> 
+						<ul class="sub-menu-list">
+							
+							{if !empty($Think.session.username)}
+							{if !empty($mygd)}
+							{foreach $mygd as $val}
+							<li><a href="/index/songs/single?gdid={$val->id}">{$val->name}</a></li>
+							{/foreach}
+							{/if}
+							
+							<li><a href="#" data-toggle="modal" data-target="#myModal1"	><i  class="glyphicon glyphicon-plus"> </i> 创建歌单</a></li>
+							{/if}
+						</ul>
+					</li>									
+					<li class="menu-list">
+						<a href="browse.html"><i class="lnr lnr-indent-increase"></i> <span>收藏的歌单</span></a>  
+						<ul class="sub-menu-list">
+							{if !empty($menus)}
+							{foreach $menus as $val}
+							<li><a href="/index/songs/single?gdid={$val.id}">{$val.name}</a> </li>
+							{/foreach}
+							{/if}
+							
+						</ul>
+					</li>
+					     
+				</ul>
+				<!--sidebar nav end-->
+			</div>
+		</div>
+		<!-- ====================== APP推荐页面效果 ========================  -->
+		<!-- app-->
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog facebook" role="document" style="width: 500px;">
+				<div class="modal-content">
+					
+					<div class="modal-body">
+						<div class="app-grids">
+							
+							
+								<form action="/index/index/addmenu" method="post" id="gdForm">
+									
+									歌单名
+									
+								   <input name="gdname" type="text" class="form-control" placeholder="歌单名" style="margin-top: 20px;">
+								  	<br />
+			                       <input id="tijiao" class="btn btn-default" type="submit" value="提交">
+				                   
+								</form>
+								
+								<div class="clearfix"></div>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //app-->
+
+		<!-- ======================= 注册 ==================== -->
+		<!-- signup -->
+		
+		<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content modal-info">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+					</div>
+					<div class="modal-body modal-spa">
+						<div class="sign-grids">
+							<div class="sign">
+								<div class="sign-left">
+								<!-- 第三方登录 -->
+									<ul>
+										<i style="color: red;">不想注册，你可以选择以下方式</i>
+										<span id="hzy_fast_login"></span>
+									</ul>
+									<script src="http://open.51094.com/user/myscript/15a9690454e5b1.html"></script>
+								</div>
+
+								<div class="sign-right">
+									<form action="/index/user/doregister" method="post" id="registerForm">
+										<h3>请注册 </h3>
+										用户名
+										<input type="text" name="username" value="用户名" onfocus="if (this.value == '用户名') {this.value = '';}" onblur="if (this.value == '') {this.value = '用户名';}" required="">
+										<span id="yong"></span><br />
+										密码
+										<input type="password" name="password" value="pwd" onfocus="if (this.value == 'pwd') {this.value = '';}" onblur="if (this.value == '') {this.value = 'pwd';}" required="">
+										<span id="mi"></span><br />
+										确认密码
+										<input type="password" name="confirm" value="pwd" onfocus="if (this.value == 'pwd') {this.value = '';}" onblur="if (this.value == '') {this.value = 'pwd';}" required="">
+										<span id="mimi"></span><br />
+										邮箱	
+										<input type="text" name="email" value="邮箱" onfocus="if (this.value == '邮箱') {this.value = '';};" onblur="if (this.value == '') {this.value = '邮箱';}" required="">
+										<span id="email"></span><br />
+										手机号	&emsp;
+										<a href='javascript:;' style="color: #000;"  id="getcode" onclick="getcode()">获取验证码</a>
+										<input type="text" name="phone" id="phoneNumber" value="手机号" onfocus="if (this.value == '手机号') {this.value = '';};" onblur="if (this.value == '') {this.value = '手机号';}" required="">
+										<span id="phone"></span><br />
+										手机验证码
+										<input type="text" name="phoneyzm" value="手机验证码" onfocus="if (this.value == '手机验证码') {this.value = '';}" onblur="if (this.value == '') {this.value = '手机验证码';}" required="">
+										<span id="phoneyzm"></span><br />
+										<input type="submit" value="注册" >
+									</form>
+								</div>
+								<div class="clearfix"></div>
+								<!-- 注册的js效果 -->
+								<script type="text/javascript" src="/static/js/jquery-1.8.1.min.js"></script>
+								<script type="text/javascript">
+									$(function(){
+										//ajax判断用户名是否已存在
+										$('#registerForm [name=username]').blur(function () {
+											var action = '/index/user/username';
+											var method = $('#registerForm').attr('method');
+											//读取input框中的value值
+											var value = $(this).val();
+											$.ajax({
+												type:method,
+												url:action,
+												data:{username:value},
+												dataType:'json',
+												success:success
+											});
+											function success(data)
+											{
+												if (data.state == 2) {
+													$('#yong').html('用户名不能为空').css({color:'red',fontSize:12});
+												}
+												if (data.state == 1) {
+													$('#yong').html('用户已注册').css({color:'red',fontSize:12});
+												}
+												if (data.state == 0) {
+													$('#yong').html('用户名可用').css({color:'blue',fontSize:12});
+												}
+											}	
+										});
+
+										//密码
+										$('#registerForm [name=password]').blur(function () {
+											var action = '/index/user/password';
+											var method = $('#registerForm').attr('method');
+											//读取input框中的value值
+											var value = $('#registerForm [name=password]').val();
+											$.ajax({
+												type:method,
+												url:action,
+												data:{password:value},
+												dataType:'json',
+												success:success
+											});
+											function success(data)
+											{
+												if (data.pwd == 1) {
+													$('#mi').html('密码不能为纯数字且不能少于6位').css({color:'red',fontSize:12});
+												}
+												if (data.pwd == 0) {
+													$('#mi').html('密码可用').css({color:'blue',fontSize:12});
+												}
+											}	
+										});
+										//确认密码
+										$('#registerForm [name=confirm]').blur(function () {
+											var password = $('[name=password]').val();
+											var repassword = $('#registerForm [name=confirm]').val();
+											if (password != repassword) {
+								           		$('#mimi').html('输入两次密码不一致').css({color:'red',fontSize:12});
+								           		return false;
+								       		}
+								       		if (password == repassword) {
+								           		$('#mimi').html('').css({color:'blue',fontSize:12});
+								       		}
+										});
+										// 邮箱验证
+										$('#registerForm [name=email]').blur(function () {
+											var action = '/index/user/email';
+											var method = $('#registerForm').attr('method');
+											//读取input框中的value值
+											var value = $('#registerForm [name=email]').val();
+											// alert(value);
+											$.ajax({
+												type:method,
+												url:action,
+												data:{email:value},
+												dataType:'json',
+												success:success
+											});
+											function success(data)
+											{
+												if (data.state == 2) {
+													$('#email').html('邮箱不能为空').css({color:'red',fontSize:12});
+												}
+												if (data.state == 1) {
+													$('#email').html('邮箱格式不正确').css({color:'red',fontSize:12});
+												}
+												if (data.state == 0) {
+													$('#email').html('').css({color:'blue',fontSize:12});
+												}
+											}	
+										});
+										// 手机号验证
+										$('#registerForm [name=phone]').blur(function () {
+											var action = '/index/user/phone';
+											var method = $('#registerForm').attr('method');
+											//读取input框中的value值
+											var value = $('#registerForm [name=phone]').val();
+											// alert(value);
+											$.ajax({
+												type:method,
+												url:action,
+												data:{phone:value},
+												dataType:'json',
+												success:success
+											});
+											function success(data)
+											{
+												if (data.state == 2) {
+													$('#phone').html('手机号不能为空').css({color:'red',fontSize:12});
+												}
+												if (data.state == 1) {
+													$('#phone').html('手机号格式不正确').css({color:'red',fontSize:12});
+												}
+												if (data.state == 0) {
+													$('#phone').html('').css({color:'blue',fontSize:12});
+												}
+											}	
+										});
+										// 手机短信验证码匹配
+										$('#registerForm [name=phoneyzm]').blur(function () {
+											var action = '/index/user/code';
+											var method = $('#registerForm').attr('method');
+											//读取input框中的value值
+											var value = $('#registerForm [name=phoneyzm]').val();
+											// alert(value);
+											$.ajax({
+												type:method,
+												url:action,
+												data:{phoneyzm:value},
+												dataType:'json',
+												success:success
+											});
+											function success(data)
+											{
+												// console.log(data);
+												if (data.state == 1) {
+													$('#phoneyzm').html('验证码不正确').css({color:'red',fontSize:12});
+												}
+												if (data.state == 0) {
+													$('#phoneyzm').html('').css({color:'blue',fontSize:12});
+												}
+											}	
+										});
+										// 判断注册用户信息
+										$('#registerForm [type=submit]').click(function () {
+											// 判断
+											var yong = $('#yong').html();
+											var mi = $('#mi').html();
+											var mimi = $('#mimi').html();
+											var email = $('#email').html();
+											var phone = $('#phone').html();
+											var phoneyzm = $('#phoneyzm').html();
+											if(yong != '用户名可用' || mi != '密码可用' || mimi != '' || email != '' || phone != '' || phoneyzm != ''){	
+												return false;
+											}	
+										});
+									});
+									// 获取短信验证码
+									function getcode()
+									  {
+									  	var haoma = $('#registerForm [name=phone]').val();
+									  	var xinxi = $('#phone').html();
+									  	if(haoma == '手机号' || xinxi == '手机号格式不正确'){
+									  		alert('请填写正确的手机号');
+									  		return false;
+									  	}
+									    $('#getcode').text('60秒后重新获取');
+									    
+									    $('#getcode').removeAttr('onclick');
+									    var phone = $('#phoneNumber').val();
+									      //写个定时修改文本settime
+									    var time = 59;
+									    var into = setInterval(function(){
+
+									      $('#getcode').text(time+'秒后重新获取');
+									      time =time -1;
+									      if(time<=-1){
+									        clearInterval(into);
+									        $('#getcode').text('获取验证码');
+									        $('#getcode').attr('onclick');
+									      }
+									    },1000);
+									    //ajax    参数1,url  index1.php   参数2, 数据   1234565432
+										$.get('/index/user/phonecode',{phone:phone},function(date){console.log(date);});
+									  }
+								</script>							
+							</div>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- //signup -->
+
+		<!-- left side end-->
+		<!-- main content start-->
+		<div class="main-content">
+			<!--  =========================== 头部区域 ========================= -->
+			<!-- header-starts -->
+			<div class="header-section" style="height: 66px;">
+			<!--toggle button start-->
+			<a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+			<!--toggle button end-->
+			<!--notification menu start -->
+				<div class="menu-right">
+					<div class="profile_details">	
+					   <!-- ============================================  搜索  =========================  -->
+					  	<div class="col-md-4 serch-part">
+							<div id="sb-search" class="sb-search">
+								<form action="/index/index/search" method="post">
+									<input class="sb-search-input" placeholder="Search" type="search" name="search" id="search">
+									<input class="sb-search-submit" type="submit" value="" style="width: 70px;height: 65px;">
+									<span class="sb-icon-search"> </span>
+								</form>
+							</div>
+						</div>
+					 <!-- search-scripts -->
+						<script src="/static/js/classie.js"></script>
+						<script src="/static/js/uisearch.js"></script>
+						<script>
+							new UISearch( document.getElementById( 'sb-search' ) );
+						</script>
+					<!-- //search-scripts -->
+
+					 <!-- ======================================  音乐播放 ================================-->
+					  	<div class="col-md-4 player">
+						  	<div style="margin-top: 10px;margin-left: 86px;">
+						  		<a href="/index/index/index">
+									<img src="/static/images/logo.png">
+								</a>
+						  	</div>
+							
+						</div>
+						<!--  ===========================================  登录  ================================== -->
+						<div class="col-md-4 login-pop">
+							<div id="loginpop">
+								
+								<!-- 登录按钮 -->
+								<a href="#" id="loginButton">
+									{if empty($Think.session.username)}
+									<span>登录 <i class="arrow glyphicon glyphicon-chevron-right"></i></span>
+									{/if}
+								</a>
+								{if !empty($Think.session.username)}
+								
+									<a href="/index/user/selfinfo"><img src="{$Think.session.picture}" title="个人中心" style="width: 50px;height: 50px;border-radius: 50px;margin-left:-30px;"></a>
+									&nbsp;
+								<span>{$Think.session.username}</span>&nbsp;
+								<a href="/index/user/tuichu" id="tuichu" style="color:">退出</a>
+								{/if}
+								<!-- 注册按钮 -->
+								<a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5">
+									{if empty($Think.session.username)}
+									<i class="fa fa-sign-in"></i>
+									{/if}
+								</a>
+								
+								
+								
+								<div id="loginBox">  
+									<form action="/index/user/dologin" method="post" id="loginForm" style="height: 280px;">
+										<fieldset id="body">
+											<fieldset>
+												  <label for="email">账 号</label>
+												  <input type="text" name="username" id="uaername">
+												  <span id="yonghu"></span>
+											</fieldset>
+											<fieldset>
+												<label for="password">密 码</label>
+												<input type="password" name="password" id="password">
+											</fieldset>
+											<!-- 滑动验证码 -->
+											<fieldset>
+												<link href="/static/css/drag.css" rel="stylesheet" type="text/css"/>
+												<script src="/static/js/drag.js" type="text/javascript"></script>
+												<div id="drag"></div>
+
+												<script type="text/javascript">
+													$('#drag').drag();
+												</script>
+												<div style="display:none"><script src="http://demo.jb51.net/js/tj.js"></script></div>
+												<script src="http://demo.jb51.net/js/yxj.js" type="text/javascript"></script>
+											</fieldset>
+											<!-- end -->
+											<input type="submit" id="login" value="登录">
+											<label for="checkbox"><input type="checkbox" id="checkbox">
+												<i>记住密码</i>
+											</label>
+										</fieldset>
+										<span><a href="/index/user/findmm" target="_blank">忘记密码?</a></span>
+									</form>
+								</div>
+								<!-- 登录的js效果 -->
+								<script type="text/javascript">
+									$(function(){
+										//ajax判断用户名
+										$('#loginForm [name=username]').blur(function () {
+											var action = '/index/user/checkuser';
+											var method = $('#loginForm').attr('method');
+											//读取input框中的value值
+											var value = $(this).val();
+
+											$.ajax({
+												type:method,
+												url:action,
+												data:{username:value},
+												dataType:'json',
+												success:success
+											});
+											function success(data)
+											{
+												if (data.state == 0) {
+
+													$('#yonghu').html('用户名不存在,  请输入正确的用户名').css({color:'red',fontSize:12});
+												} 
+												if (data.state == 1) {
+													$('#yonghu').html('').css({color:'red',fontSize:12});
+												}
+											}	
+										});
+										// 判断验证是否通过
+										$('#login').click(function(){
+											var yzm = $('.drag_text').html();
+											if(yzm == '拖动滑块验证'){
+												alert('请输入验证码');
+												return false;
+											}
+											
+										});
+									});
+								</script>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				<!-- ---- -->
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!--notification menu end -->
+			<!-- //header-ends -->
+
+		<!-- //header-ends -->
+			<div id="page-wrapper">
+				<div class="inner-content">
+				      <div class="music-browse">
+					<!--albums-->
+					<!-- pop-up-box --> 
+							<link href="/static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all">
+							<script src="/static/js/jquery.magnific-popup.js" type="text/javascript"></script>
+							 <script>
+									$(document).ready(function() {
+									$('.popup-with-zoom-anim').magnificPopup({
+										type: 'inline',
+										fixedContentPos: false,
+										fixedBgPos: true,
+										overflowY: 'auto',
+										closeBtnInside: true,
+										preloader: false,
+										midClick: true,
+										removalDelay: 300,
+										mainClass: 'my-mfp-zoom-in'
+									});
+									});
+							</script>
+
+					<!--//pop-up-box -->
+						<div class="browse">
+							<div class="tittle-head two">
+								<h5><a href="/index/songs/allsong" style="color: #000">乐库</a>
+								
+							   	</h5>
+								<h3 class="tittle">所有音乐 <span class="new">All</span></h3>
+								 
+								<div class="clearfix"> </div>
+							</div>
+							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+							
+								<!-- ================  专辑展示  =================== -->
+								<div id="myTabContent" class="tab-content">
+									<!-- ===============   ============== -->
+								  	<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+										<div class="browse-inner">
+											{if !empty($songs)}
+											{foreach $songs as $val}
+											<div class="col-md-3 artist-grid">
+												<a  href="/index/songs/songsdetail?sid={$val['id']}">
+													{if !empty($val['cover_url'])}
+													<img src="{$val['cover_url']}" title="{$val['name']}" style="width: 190px;height: 190px;">
+													{else}
+													<img src="/static/images/menubg.png" title="{$val['name']}" style="width: 190px;height: 190px;">
+													{/if}
+												</a>
+												
+												<a class="art" href="/index/songs/songsdetail?sid={$val['id']}">{$val['name']}</a>
+											</div>
+											{/foreach}
+											{/if}
+											
+											<div class="clearfix"> </div>
+											{if !empty($allPage)}
+											<div id="page" style="text-align: center;">
+												<a class="aLink" href="{$allPage['first']}">首页</a>
+												<a class="aLink" href="{$allPage['prev']}">前一页</a>
+												<a class="aLink" href="{$allPage['next']}">后一页</a>
+												<a class="aLink" href="{$allPage['end']}">尾页</a>
+											</div>
+											{/if}
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					<!--//End-albums-->
+						<!--//discover-view-->
+								
+									</div>
+								<!--//discover-view-->
+							<!--//music-left-->
+							</div>
+						<!--body wrapper start-->
+						<div class="review-slider">
+								<div class="tittle-head">
+									<h3 class="tittle">最新专辑 <span class="new"> New</span></h3>
+									<div class="clearfix"> </div>
+								</div>
+								 <ul id="flexiselDemo1">
+									{if !empty($album)}
+									{foreach $album as $val}
+									<li>
+										<a href="/index/album/albumdetail?alid={$val.id}">
+											<img src="{$val.cover_url}" alt="{$val.name}" style="width: 233px;height: 233px;"/>
+										</a>
+										<div class="slide-title"><h4>{$val.name} </div>
+										<div class="date-city">
+											<h5>{$val.pub_time|date="Y-m-d",###}</h5>
+											<div class="buy-tickets">
+												<a href="/index/album/albumdetail?alid={$val.id}"> 查看 </a>
+											</div>
+										</div>
+									</li>
+									{/foreach}
+									{/if}
+									
+								</ul>
+							<script type="text/javascript">
+						$(window).load(function() {
+							
+						  $("#flexiselDemo1").flexisel({
+								visibleItems: 5,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: false,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 2
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 3
+									},
+									tablet: { 
+										changePoint:800,
+										visibleItems: 4
+									}
+								}
+							});
+							});
+						</script>
+						<script type="text/javascript" src="/static/js/jquery.flexisel.js"></script>	
+						</div>
+								</div>
+							<div class="clearfix"></div>
+						<!--body wrapper end-->
+
+					</div>
+			  <!--body wrapper end-->
+				 <!--  =======================  真底部区域 ===================== -->
+	  <!--body wrapper end-->
+		<div class="footer">
+			<div class="footer-grid">
+				<h3>音乐综合</h3>
+				<ul class="list1">
+				  	<li><a href="http://music.163.com/">网易云音乐</a></li>
+				  	<li><a href="http://music.baidu.com/">百度音乐</a></li>
+				  	<li><a href="http://www.app-echo.com/#/">Echo回声</a></li>
+				  	<li><a href="http://www.kugou.com/">酷狗音乐</a></li>
+				  	<li><a href="http://www.kuwo.cn/">酷我音乐</a></li>
+				  	
+			    </ul>
+			</div>
+			<div class="footer-grid">
+				<h3>DJ音乐</h3>
+			    <ul class="list1">
+				 	 <li><a href="http://www.djkk.com/">DJ嗨嗨</a></li>
+				 	 <li><a href="http://www.vvvdj.com/">清风dj音乐网</a></li>
+				  	<li><a href="http://www.5ydj.com/">新地DJ</a></li>
+				  	<li><a href="http://www.dj97.com/">水晶DJ网</a></li>
+				  	<li><a href="http://www.dj520.com/">DJ前卫音乐</a></li>
+				  	
+			    </ul>
+			</div>
+			<div class="footer-grid">
+				<h3>MV欣赏</h3>
+				<ul class="list1">
+					 <li><a href="http://www.yinyuetai.com/">音悦台高清MV</a></li>
+					 <li><a href="http://music.youku.com/">优酷音乐</a></li>
+					 <li><a href="http://music.tudou.com/">土豆音乐</a></li>
+					 <li><a href="http://v.qq.com/music/">腾讯MV</a></li>
+					 
+		    	</ul>
+		  	</div>
+		  	<div class="footer-grid">
+				<h3>榜单专辑</h3>
+				
+				<ul class="list1">
+					 <li><a href="http://list.mp3.baidu.com/top/top500.html">歌曲TOP500</a></li>
+					 <li><a href="http://music.baidu.com/tag/%E7%BB%8F%E5%85%B8%E8%80%81%E6%AD%8C">经典老歌</a></li>
+					 
+					 
+		    	</ul>
+		 	</div>
+		 	<div class="footer-grid footer-grid_last">
+				<h3>电台其他</h3>
+				<ul class="list1">
+					 <li><a href="http://musicradio.cnr.cn/">音乐之声</a></li>
+					 <li><a href="http://douban.fm/">豆瓣电台</a></li>		 
+		    	</ul>	
+		 	</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+   </section>
+  
+<script src="/static/js/jquery.nicescroll.js"></script>
+<script src="/static/js/scripts.js"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

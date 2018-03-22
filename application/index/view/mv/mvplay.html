@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if !empty($mv)}
+<title>{$mv['vname']}</title>
+{/if}
+<link rel="stylesheet" href="/static/css/liststyle.css">
+ <!-- Bootstrap Core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- <link rel="stylesheet" href="/static/css/person/common.css" type="text/css"> -->
+	<!-- <link rel="stylesheet" href="/static/css/person/login.css" type="text/css"> -->
+	<!-- <link rel="stylesheet" href="/static/css/person/cropper.min.css" type="text/css"> -->
+	 <link rel="stylesheet" href="/static/css/person/user_center.css" type="text/css">
+	 <script src="/static/js/jquery-1.10.2.min.js"></script>
+
+	 <link rel="stylesheet" href="/static/dist/plyr.css">
+	<!-- 评论的css -->
+	<link href="/static/css/whir_style.css" rel="stylesheet" type="text/css" />
+
+	<script src="/static/dist/plyr.js"></script>
+	<style>
+		
+		.m{ margin-left: auto; margin-right: auto; width: 640px; margin-top: 100px; }
+		
+	</style>
+</head>
+<body style="background: #f6f6f6;">
+<!-- 顶部区域 -->
+	<div class="header" style="background: #45B39D;height: 110px;">
+		<div class="hd-wrap box-center clearfix">
+				
+			<!-- logo -->
+			<h1 class="logo fl" style="width: 300px;border: none;">
+				<a href="/index/index/index">
+					<img src="/static/images/logo.png">
+				</a>
+				<span class="logo-text">MV</span>
+			</h1>			
+			<!-- 右侧账号信息begin -->
+	        <div class="hd-right fr">			
+				<ul class="hd-info">				
+					<li class="user-info">
+						{if !empty($Think.session.username)}
+						您好！
+						{$Think.session.username}
+						{else}
+						您未登录, 请前往
+						{/if}
+						<span class="user-name" id="userNickname"></span>
+						<i class="icon-common"></i>
+					</li>
+					{if !empty($Think.session.username)}
+					<li>
+						<em class="separate">|</em><a class="loginOut" href="/index/user/tuichu">退出</a><em class="separate">|</em>
+					</li>
+					{/if}
+					<li><a href="/index/index/index">首页</a></li>			
+				</ul>
+			</div>
+	    	<!-- 右侧账号信息end -->
+		</div>
+	</div>
+<!-- header end -->
+	<div class="bg_box">
+		<div class="main">
+			<div class="malbum">
+				{if !empty($mv)}
+				<div class="data_cover"> 
+					<img src="{$mv['pic']}" alt="{$mv['vname']}" >
+				</div>
+				<div class="data_cont"><h1>{$mv['vname']}</h1></div>
+				
+				<div class="data_info">
+					<p>歌手：
+						
+						<a href="" target="_blank" title="运动">{$mv['vsinger']}</a>						
+					</p>
+					<p>简介：
+						
+						{$mv['vintro']}			
+					</p>
+					<div class="data_actions">
+						<div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1517485084064">
+							<a href="#" class="bds_more" data-cmd="more"></a>
+							<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+							<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+							<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+							<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+							<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+							<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+						</div>
+						<script>
+							window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+						</script>
+					</div>							
+				</div>
+				
+				
+				
+				<!-- 视频播放网站 -->
+				<div class="m" style="width: 600px;height:400px;position: absolute;top:360px;left: 420px;">
+					<video poster="vs.png" controls style="width: 600px;height:400px">
+					  <source src="{$mv['url']}" type="video/mp4" >
+					  <!-- <source src="path/to/video.webm" type="video/webm">-->
+					  <!-- Captions are optional -->
+					</video>
+					<script>plyr.setup();</script>
+				</div>
+				{/if}
+			</div>
+		</div>
+	</div>
+<!-- ============================================ -->
+
+	<!--留言-->
+	<div class="lybox" style="position:absolute;top:900px;left:100px;background: #f6f6f6">
+	  <div class="guestbook">
+	    <div class="left868">
+	      <!--留言板-->
+	      <div class="fbpl" style="border-color:#45B39D;">
+		 
+	        <div class="plr">
+	        	<span class="pltx">
+	        		{if !empty($Think.session.picture)}
+	        		<a href="#">
+	        			<img src="{$Think.session.picture}" width="61" height="61" />
+	        		</a>
+	        		{else}
+	        		<a href="#">
+	        			<img src="/static/images/touxiang.gif" width="61" height="61" />
+	        		</a>
+	        		{/if}
+	        	</span>
+	        	<span class="plname"><a href="#">{$Think.session.username}</a></span>
+	        	<span class="plnum">最多可输入300字<a href="#"></a></span>
+	        </div>
+	        <div class="zishu"></div>
+	        <form action="/index/mv/addpost?mvid={$Request.get.mvid}" method="post">
+	        	<textarea name="content" class="input4"></textarea>
+		        	<input type="hidden" value="{$Request.get.mvid}" name="mvid" />
+		        	<button style="margin-left:25px;width:98px;height:35px;border:none;">
+		        		<img src="/static/images/fbpl.jpg">
+		        	</button>
+	        </form>
+			
+	      </div>
+	      <!--留言列表-->
+	      <div class="lylist">
+	        <div class="title1" style="border-color:#45B39D;">
+	          <h1>全部评论</h1>
+	          <div class="plpage">
+	           <!--  <div class="page1"><span class="num"><font class="f_blue">1</font>/41</span><span class="prev">上一页</span><span class="next"><a href="#">下一页</a></span> </div> -->
+	          </div>
+	        </div>
+	        {if !empty($huifu)}
+			{foreach($huifu as $val)}
+	        <ul class="pllist">
+	          <li>
+	            <div class="lyimg">
+
+	            	<a href="#">
+	            		<img src="{$val['picture']}" />
+	            	</a>
+	            </div>
+	            <div class="lyinfo">
+	              <div class="lyname">
+	              	<span class="myname"><a href="#">{$val['username']}</a></span>
+	              </div>
+	              <div class="gxqm" style="margin-left:{$val['level']*30}px;">|——&nbsp;&nbsp;{$val['content']}</div>
+	              <div class="reque">
+              		发布于:{$val.create_time|date="y-m-d h:i:s",###} 
+				 	<span style="display: none;" id="id">{$val['id']}</span>
+        			<span style="display: none;" id="id">{$Request.get.mvid}</span>
+              		<span class="zhuanfa"><a  class="comment-reply">回复</a></span>
+	              </div>
+	            </div>
+	          </li>
+	        </ul>
+			{/foreach}
+			{/if}
+	        <div class="page">
+				
+	        </div>
+			<script type="text/javascript">
+				$(".page a").on("click", function() {
+					var page = $(this).attr("href");
+					getPage(page);
+					return false;
+				});
+				function getPage(url){
+					$.get(url, function(result){
+						$("body").html(result);
+					});
+				}                     
+			</script>
+			<script type="text/javascript">
+			//点击"回复"按钮显示或隐藏回复输入框
+	    $('.comment-reply').click(function(){
+	      var id = $(this).parent().prev().prev().html();
+	      var vid = $(this).parent().prev().html();
+	        if($(this).next().length>0)
+	        {
+	          $(this).next().remove();
+	        } else {
+	            //添加回复div
+	            $('.comment-reply').next().remove();//删除已存在的所有回复div
+	            //添加当前回复div
+	            var parent_id = $(this).attr("comment_id");//要回复的评论id
+	            divhtml = '<div>'+
+	                      '<form method="post" action="/index/mv/addpost?mvid='+vid+'&id='+id+'">'+
+	                        '<input type="text" style="border:1px solid green;width:200px;height:30px" name="content">'+
+	                      '<input type="submit" style="border:1px solid green;width:50px;height:30px">'+
+	                      '</form>'+
+	                      '</div>';
+	            $(this).after(divhtml);
+	         }
+	    });
+	  </script>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+
+
+
+	<!-- ============================== -->
+</body>
+	<!-- Bootstrap Core JavaScript -->
+   	<script src="/static/js/bootstrap.min.js"></script>
+</html>

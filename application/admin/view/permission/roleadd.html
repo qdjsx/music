@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>角色管理添加角色</title>
+<link href="/static/admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/static/admin/assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="/static/admin/assets/js/jquery.js" charset="utf-8"></script>
+<script src="/static/admin/assets/js/x-layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+  
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加角色</span></div>
+  
+    <ul class="forminfo">
+    <li><label>角色名称</label><input name="rname" value="" type="text" class="dfinput" /><i>角色名称不能超过12个字符</i></li>
+    <li><label>角色描述</label><input name="des" value="" type="text" class="dfinput" /><i>请填写正确的角色描述</i></li>
+    <!-- <li><label>从属区域</label><input name="area" value="" type="text" class="dfinput"/><li>
+    <li><label>推送导游名</label><input name="gname" value="" type="text" class="dfinput" value="" /></li>
+    <li><label>推送内容</label><textarea id="content" cols="" rows="" class="textinput"></textarea></li> -->
+    <li><label>&nbsp;</label><input name="" id="send" type="button" class="btn" value="确认保存"/ style="background: red"></li>
+    </ul>
+    
+    
+    </div>
+</body>
+
+<script type="text/javascript">
+  $(function(){
+        //ajax判断用户名
+        $('#send').click(function () {
+            //读取input框中的value值
+            var value1 = $('[name=rname]').val();
+            var value2 = $('[name=des]').val();
+            $.ajax({
+                type:'post',
+                url:'/admin/permission/do_add_role',
+                data:{rname:value1,des:value2},
+                dataType:'json',
+                success:success
+            });
+            function success(data)
+            {
+                if (data.status == 1) {
+                     alert('添加成功');
+                     // window.location.href = '/admin/permission/rolelist';
+                } else {
+                    alert('添加失败');
+                }
+                //刷新
+                window.parent.location.reload();  
+                parent.layer.closeAll('iframe');
+            }   
+        });  
+  });
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+

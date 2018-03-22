@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if !empty($menu)}
+<title>{$menu->name}</title>
+{/if}
+<link rel="stylesheet" href="/static/css/liststyle.css">
+ <!-- Bootstrap Core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- <link rel="stylesheet" href="/static/css/person/common.css" type="text/css"> -->
+	<!-- <link rel="stylesheet" href="/static/css/person/login.css" type="text/css"> -->
+	<!-- <link rel="stylesheet" href="/static/css/person/cropper.min.css" type="text/css"> -->
+	 <link rel="stylesheet" href="/static/css/person/user_center.css" type="text/css">
+	 <script src="/static/js/jquery-1.10.2.min.js"></script>
+	 <!--music css 开始-->
+	    <link rel="stylesheet" href="/static/mplayer/css/mplayer.css">
+	 <!--music css 结束-->
+		<!--music js start-->
+		<script src="http://www.jq22.com/jquery/jquery-2.1.1.js 
+		"></script>
+		<script src="/static/mplayer/js/mplayer.js"></script>
+		<script src="/static/mplayer/js/mplayer-list.js"></script>
+		<script src="/static/mplayer/js/mplayer-functions.js"></script>
+		<script src="http://cdn.bootcss.com/jquery-nstslider/1.0.13/jquery.nstSlider.min.js"></script>
+	<!--music js end-->	
+
+</head>
+<body>
+<!-- 顶部区域 -->
+	<div class="header" style="background: #45B39D;height: 110px;">
+		<div class="hd-wrap box-center clearfix">
+				
+			<!-- logo -->
+			<h1 class="logo fl" style="width: 300px;border: none;">
+				<a href="/index/index/index">
+					<img src="/static/images/logo.png">
+				</a>
+				<span class="logo-text">歌单</span>
+			</h1>			
+			<!-- 右侧账号信息begin -->
+	        <div class="hd-right fr">			
+				<ul class="hd-info">				
+					<li class="user-info">
+						您好！{$Think.session.username}<span class="user-name" id="userNickname"></span><i class="icon-common"></i>
+					</li>
+					{if !empty($Think.session.username)}
+					<li>
+						<em class="separate">|</em><a class="loginOut" href="/index/user/tuichu">退出</a><em class="separate">|</em>
+					</li>
+					{/if}
+					<li><a href="/index/index/index">首页</a></li>					
+				</ul>
+			</div>
+	    	<!-- 右侧账号信息end -->
+		</div>
+	</div>
+<!-- header end -->
+	<div class="bg_box">
+		<div class="main">
+			<div class="malbum">
+				{if !empty($menu)}
+				<div class="data_cover"> 
+					<img src="{$menu->cover_url}" alt="{$menu->name}" >
+				</div>
+				<div class="data_cont"><h1>{$menu->name}</h1></div>
+				
+				<div class="data_info">
+					<p>创建者：
+						{if !empty($user)}
+						<a href="" target="_blank" title="运动">{$user->username}</a>
+						{/if}
+					</p>
+					
+					<p>歌曲数：{if !empty($count)} {$count}{/if}</p>
+					
+					<p>
+						歌曲标签：
+						{if !empty($title)}
+						{foreach $title as $val}
+						<a href="/index/menu/menu?genre_id={$val['id']}">{$val['name']}</a>&emsp;
+						{/foreach}
+						{/if}
+					</p>
+					<p>播放数：12</p>
+
+					<p>创建时间：{$menu->createtime|date="Y-m-d",###}</p>
+					<p>收藏数：{$menu->isselect}</p>
+					<p>简介：{$menu->menustruect}</p>
+				</div>
+				
+				<div class="data_actions">
+					<!-- <a href="javascript:playsong(1);" class="play"><i class="glyphicon glyphicon-play-circle"></i>播放全部</a> -->
+					<!-- 加判断是否已收藏 -->
+					{if empty($isselect)}
+					<a href="/index/songs/shoucang?gdid={$Think.get.gdid}" class="play" id="shoucang"><i class="glyphicon glyphicon-ok-sign"></i><span>收藏</span></a>
+					{else}
+						<a  class="play" ><i class="glyphicon glyphicon-ok-sign"></i>已收藏</a>
+					{/if}
+					<!-- 收藏歌单 -->
+					<script type="text/javascript">
+						$(function(){
+							$('#shoucang').click(function(){
+								var gdid = $('#shoucang').attr('href');
+								$.ajax({
+									type:'post',
+									url:gdid,
+									data:null,
+									dataType:'json',
+									success:success
+								});
+								function success(data)
+								{
+									
+									if (data.state == 1) {
+										alert('收藏成功');
+										$('#shoucang span').text('已收藏');
+										$('#shoucang').click(function(){
+											return false;
+										});
+									}
+									if (data.state == 0) {
+										alert('收藏失败');
+									}
+								}
+								return false;
+							});
+						});
+					</script>
+					<div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1517485084064">
+						<a href="#" class="bds_more" data-cmd="more"></a>
+						<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+						<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+						<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+						<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+						<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+						<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+					</div>
+					<script>
+						window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+					</script>
+				</div>
+				{/if}
+				<!-- ============================= -->
+				<!-- =============================================================== -->
+
+
+		<div class="mp" style="position:absolute;left:140px;top:500px;">
+	<div class="mp-box">
+		<img src="/static/images/menubg.png" alt="music cover" class="mp-cover">
+		<div class="mp-info">
+			<p class="mp-name"></p>
+			<p class="mp-singer"></p>
+			<p><span class="mp-time-current">00:00</span>/<span class="mp-time-all">00:00</span></p>
+		</div>
+		<div class="mp-btn">
+			<button class="mp-prev" title="上一首"></button>
+			<button class="mp-pause" title="播放"></button>
+			<button class="mp-next" title="下一首"></button>
+			<button class="mp-mode" title="播放模式"></button>
+			<div class="mp-vol">
+				<button class="mp-vol-img" title="静音"></button>
+				<div class="mp-vol-range" data-range_min="0" data-range_max="100" data-cur_min="80">
+					<div class="mp-vol-current"></div>
+					<div class="mp-vol-circle"></div>
+				</div>
+			</div>
+		</div>
+		<div class="mp-pro">
+			<div class="mp-pro-current"></div>
+		</div>
+		<div class="mp-menu">
+			<button class="mp-list-toggle"></button>
+			<button class="mp-lrc-toggle"></button>
+		</div>
+	</div>
+	<button class="mp-toggle" style="background:blue;display:none">
+		<span class="mp-toggle-img"></span>
+	</button>
+	<div class="mp-lrc-box">
+		<ul class="mp-lrc"></ul>
+	</div>
+	<button class="mp-lrc-close"></button>
+	<div class="mp-list-box">
+		<ul class="mp-list-title"></ul>
+		<table class="mp-list-table">
+			<thead>
+				<tr>
+					<th>歌名</th>
+					<th>歌手</th>
+					<th>时长</th>
+				</tr>
+			</thead>
+			<tbody class="mp-list"></tbody>
+		</table>
+	</div>
+</div>
+<script>
+var modeText = ['顺序播放','单曲循环','随机播放','列表循环'];
+{if !empty($result)}
+{foreach $result as $value}
+		var tmp = {
+			"name":"{$value['sname']}",
+			"singer":"{$value['aname']}",
+			"img":"/static/images/menubg.png",
+			"src":"{$value['music_url']}",
+			"lrc":"{$value['songword']}",
+		};
+		mplayer_song[0].push(tmp);
+{/foreach}
+{/if}
+var player = new MPlayer({
+	// 容器选择器名称
+	containerSelector: '.mp',
+	// 播放列表
+	songList: mplayer_song,
+	// 专辑图片错误时显示的图片
+	defaultImg: '/static/images/menubg.png',
+	// 自动播放
+	autoPlay: true,
+	// 播放模式(0->顺序播放,1->单曲循环,2->随机播放,3->列表循环(默认))
+	playMode:0,
+	playList:0,
+	playSong:0,
+	// 当前歌词距离顶部的距离
+	lrcTopPos: 34,
+	// 列表模板，用${变量名}$插入模板变量
+	listFormat: '<tr><td>${name}$</td><td>${singer}$</td><td>${time}$</td></tr>',
+	// 音量滑块改变事件名称
+	volSlideEventName:'change',
+	// 初始音量
+	defaultVolume:80
+}, function () {
+	// 绑定事件
+	this.on('afterInit', function () {
+		console.log('播放器初始化完成，正在准备播放');
+	}).on('beforePlay', function () {
+		var $this = this;
+		var song = $this.getCurrentSong(true);
+		var songName = song.name 
+
+
+ + ' - ' + song.singer;
+		console.log('即将播放'+songName+'，return false;可以取消播放');
+	}).on('timeUpdate', function () {
+		var $this = this;
+		console.log('当前歌词：' + $this.getLrc());
+	}).on('end', function () {
+		var $this = this;
+		var song = $this.getCurrentSong(true);
+		var songName = song.name 
+
+
+ + ' - ' + song.singer;
+		console.log(songName+'播放完毕，return false;可以取消播放下一曲');
+	}).on('mute', function () {
+		var status = this.getIsMuted() ? '已静音' : '未静音';
+		console.log('当前静音状态：' + status);
+	}).on('changeMode', function () {
+		var $this = this;
+		var mode = modeText[$this.getPlayMode()];
+		$this.dom.container.find('.mp-mode').attr('title',mode);
+		console.log('播放模式已切换为：' + mode);
+	});
+});
+
+
+
+
+
+
+setEffects(player);
+
+
+
+
+</script>
+
+
+
+	<!-- ============================================ -->
+
+
+
+				<!-- ============================== -->
+				<div class="data_layout" style="margin-top:200px;">>
+					<div class="data_layout_main x5_player">
+						<ul class="songlist_header">
+							<li class="songlist_header_name" style="padding-left: 40px;">   歌曲</li>
+							<li class="songlist_header_author">     歌手</li>
+							<li class="songlist_artist">所需积分</li>
+						</ul>
+						{if !empty($songs)}
+						{foreach $songs as $val}
+						<ul class="songlist_header list" id="song-1" did="313">
+							<li class="songlist_songname">
+								<span>{$val.id}</span>
+								<a href="/index/songs/songsdetail?sid={$val.id}"  target="_blank">{$val.sname}</a>
+							</li>
+							<li class="songlist_header_author" style="padding-left: 0;">
+								<a href="/index/artist/artistdetail?arid={$val.arid}"  target="_blank">{$val.name}</a>
+							</li>
+							<li class="songlist_artist" style="padding-left: 0;">{$val.score}</li>
+						</ul>
+						{/foreach}
+						{/if}
+					</div>
+					<div class="data_layout_other">
+						<h3 class="about_tit mt30">推荐歌单</h3>
+						<ul class="playlist_list">
+							{if !empty($hot)}
+							{foreach $hot as $val}
+							<li>
+								<a href="/index/songs/single?gdid={$val['id']}" title="{$val['menustruect']}">
+									<img src="{$val['cover_url']}" alt="{$val['menustruect']}" style="width: 83px;height: 83px;">
+									<span class="name">{$val['name']}</span>
+								</a>
+							</li>
+							{/foreach}
+							{/if}
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<!-- Bootstrap Core JavaScript -->
+   	<script src="/static/js/bootstrap.min.js"></script>
+</html>

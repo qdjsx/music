@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://www.miguvideo.com/wap/resource/pc/memberCenter/account_settings.jsp -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="all">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>玄机音乐 -- 我的歌单</title>  
+    <script src="/static/js/person/jquery-2.1.3.min.js"></script>
+    <!-- <script src="/static/js/jquery-1.10.2.min.js"></script> -->
+    <link rel="stylesheet" href="/static/css/person/common.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/person/login.css" type="text/css">    
+    <link rel="stylesheet" href="/static/css/person/cropper.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/person/user_center.css" type="text/css">
+    <!-- @author author | @designer designer | @pm pm -->
+    <!-- Bootstrap Core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<style type="text/css">
+		.update,.delete{
+			width: 30px;
+			height: 30px;
+			border: none;
+			border-radius: 8px;
+			margin-right: 10px;
+		}
+		#tmd {
+			width: 100%;
+			height: 100%;
+				
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			display: none;
+
+		}
+		.show {
+			width: 50%;
+			height: 90%;
+			top: 10%;
+			left: 25%;
+			position: absolute;
+			background: #f2f2f2;
+			
+		}
+	</style>
+</head>
+<body style="background: #f2f2f2;">
+	<div id="tmd">
+		<div class="show">
+			<div class="row">
+				<form class="form-horizontal" method="post" action="/index/user/upgd" enctype="multipart/form-data">
+					<div id="userInfo" class="ui-tab-content userinfo-content">					
+						<div class="form-box">
+							<div id="guanbi" class="glyphicon glyphicon-remove" style="float: right;margin-right:15px;margin-top:-30px;width: 30px;height: 30px;">
+								
+							</div>
+							<div class="line nickname-box">
+								<div class="item">歌单名</div>
+								<div class="cont">
+									<input type="hidden" id="gdid" name="gdid" value=""/>
+									<input name="gdname" class="input-text" id="nickName" type="text" value="">
+								</div>								
+							</div>
+							<div class="line nickname-box">
+								<div class="item">标签</div>
+								<div class="cont" style="font-size: 12px;">
+									{if !empty($big)}
+									{foreach $big as $bigval}
+									<div>{$bigval->name}</div>
+										{if !empty($small)}
+								   		{foreach $small as $val}
+								   		{if $val->parentid == $bigval->id}
+								   		
+								   			<input name="fittype[]" type="checkbox" value="{$val->id}" id="{$val->id}"/>
+		  	 								<label for="{$val->id}" style="margin-right: 20px;">{$val->name}</label>
+								   			
+										
+		  	 							{/if}
+		  	 							{/foreach}
+									   	{/if}
+	  	 							{/foreach}
+								   	{/if}
+								</div>								
+							</div>	
+	                            
+		                    <div class="line desc-box">
+								<div class="item">简介</div>
+								<div class="cont">
+									<textarea id="userDesc" name="autograph" style="width: 338px;"></textarea>
+	                                <p class="number"><span class="num">0</span>/<span class="total-num">120</span></p>
+								</div>								
+							</div>
+							<div class="line desc-box">
+								<div class="item">编辑封面</div>
+								<div class="cont">
+									<div style="margin-top: 30px;">
+										<img id="gdfm" src="/static/images/menubg.png" alt="" style="width: 100px;height: 100px;border-radius: 30px;">
+									</div>
+									<div style="margin-top: 20px;">
+								
+										<input type="file" name="image" id="touxiang" /> 
+										
+									</div>
+								</div>								
+							</div>
+							<div class="line btn-box">
+								<div class="item">&nbsp;</div>
+								<div class="cont">
+								    <input type="submit" value="保存" id="sc" style="border-radius: 15px;width: 100px;height: 30px;background: #B5A075;border:none;" />
+								</div>								
+							</div>
+						</div>
+					</div>				 
+				</form>	
+			</div>					
+		</div>		
+	</div>
+	<!-- 关闭按钮 -->
+	<script type="text/javascript">
+		$('#guanbi').click(function(){
+			$('#tmd').css('display','none');
+		});
+	</script>
+<div class="header" style="background: #45B39D">
+	<div class="hd-wrap box-center clearfix">
+			
+		<!-- logo -->
+		<h1 class="logo fl" >
+			<a href="/index/index/index">
+				<img src="/static/images/logo.png" style="margin-top: -8px;">
+			</a>
+			<span class="logo-text">个人中心</span>
+		</h1>			
+		<!-- 右侧账号信息begin -->
+        <div class="hd-right fr">			
+			<ul class="hd-info">				
+				<li class="user-info">
+					您好！{$Think.session.username}<span class="user-name" id="userNickname"></span><i class="icon-common"></i>
+				</li>
+				<li>
+					<em class="separate">|</em><a class="loginOut" href="/index/user/tuichu">退出</a><em class="separate">|</em>
+				</li>
+				<li><a href="/index/index/index">首页</a></li>					
+			</ul>
+		</div>
+    	<!-- 右侧账号信息end -->
+	</div>
+</div>
+<!-- 顶部header end -->
+<div class="container">
+	<!-- 内容区begin -->
+	<div class="main-wrap box-center clearfix">
+		
+		<!-- 左侧内容区begin -->
+               
+    <div class="side-left fl">
+        <div class="user-box">
+            <p class="user-pic">
+            	<span class="pic-mask"></span>
+           	 	<img id="userPhoto" src="{$Think.session.picture}">
+           	</p>
+			<p>
+				{$Think.session.username}
+			</p>
+            <p>
+				用户积分：{$Think.session.grade}
+			</p>
+        </div>
+        
+        <div class="side-link">
+            <ul>
+                <li class="link-item link02 ">
+                	<a href="/index/user/selfinfo"><i class="icon-link icon-set"></i>账号设置</a>
+                </li>
+                <li class="link-item link02 ">
+                	<a href="/index/user/tx"><i class="icon-link icon-center"></i>修改头像</a>
+                </li>
+                <li class="link-item link03 active">
+                	<a href="/index/user/mymenu"><i class="icon-link icon-collect"></i>我的歌单</a>
+                </li>
+                 <!--<li class="link-item link04"><a href="/wap/resource/pc/memberCenter/my_record.jsp"><i class="icon-link icon-record"></i>我的预约</a></li>-->               
+                <li class="link-item link05">
+                	<a href="/index/user/myselect"><i class="icon-link icon-play"></i>我收藏的歌单</a>
+                </li>
+                
+           </ul>
+       </div>
+    </div>
+	
+<!-- 左侧内容区end -->	
+      		
+	    <!-- 右侧内容区begin -->
+		<div class="main-right fr">
+			<div class="account-settings">
+				<div style="border-bottom: 1px solid #ccc;padding-bottom: 20x;">
+					<h1 style="font-size: 36px;">
+						我的歌单
+					</h1>
+				</div>
+				<div style="margin-top: 20px;"> 
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>编号</th>
+								<th>歌单名</th>
+								<th>编辑</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="gedan">
+							
+						</tbody>
+					</table>
+					<div id="page" style="text-align: center;">
+						<a class="aLink" href="">首页</a>
+						<a class="aLink" href="">前一页</a>
+						<a class="aLink" href="">后一页</a>
+						<a class="aLink" href="">尾页</a>
+					</div>
+				</div>
+				<script type="text/javascript">
+						var oTbody = document.getElementById('gedan');
+						var aA = document.getElementsByClassName('aLink');;
+						var oDiv = document.getElementById('tmd');
+						$.ajax({
+							type:'post',
+							url:'/index/user/cmenu',
+							data:{page:1},
+							dataType:'json',
+							success:success
+						});
+						function success(data)
+						{
+							oTbody.innerHTML = '';
+							// $('#gedan').html();
+							var obj = JSON.parse(data);
+							// alert(obj.result);
+							// 添加数据
+							
+						
+							// console.log(oTbody);
+							
+							for(var j in obj.result){
+								var oTr = document.createElement('tr');
+								var oID = document.createElement('td');
+								var oName = document.createElement('td');
+								var oTd = document.createElement('td');
+
+								var oMenu = document.createElement('a');
+
+								// index/songs/single?gdid=5
+								var oAf =  document.createElement('button');			
+								var oAs =  document.createElement('button');		
+								// 添加属性
+								oID.innerHTML = obj.result[j].id;
+								oMenu.innerHTML = obj.result[j].name;
+								oMenu.href = '/index/songs/single?gdid=' + obj.result[j].id;
+
+								oTbody.appendChild(oTr);
+								oTr.appendChild(oID);
+								oTr.appendChild(oName);
+								oName.appendChild(oMenu);
+								oTr.appendChild(oTd);
+								
+								oAf.innerHTML = '修改';
+								oAs.innerHTML = '删除';
+								oAf.className = 'update';
+								oAs.className = 'delete';
+								// 修改歌单
+								oAf.onclick = function(){
+									 //中间透明层
+									oDiv.style.display = 'block';
+									// oDiv.style.opacity = 0.5;
+									// 查询该歌单详细信息并且填入
+									var menu_id = this.parentNode.parentNode.firstChild.innerHTML;
+									var menu_name = document.getElementById('nickName');
+									
+									var menu_struect = document.getElementById('userDesc');
+									var cover_url = document.getElementById('gdfm');
+									var gdid = document.getElementById('gdid');
+									gdid.value = menu_id;
+									$.ajax({
+										method:'get',
+										url:'/index/user/menuinfo',
+										data:{id:menu_id},
+										dataType:'json',
+										success:finish
+									});
+									function finish (data)
+									{
+										if (data.state == 0) {
+											alert('查询失败');
+										}
+										if (data.state != 0) {
+											menu_name.value = data.gd.name;
+											menu_struect.value = data.gd.menustruect;
+											cover_url.src = data.gd.cover_url;
+
+											// 列表标签
+
+										}
+									}
+								};
+								// 删除歌单
+								oAs.onclick = function(){
+									var menu_id = this.parentNode.parentNode.firstChild.innerHTML;
+									this.parentNode.parentNode.remove();
+									$.ajax({
+										method:'get',
+										url:'/index/user/del',
+										data:{id:menu_id},
+										dataType:'json',
+										success:delmenu
+									});
+									function delmenu (data)
+									{
+										if (data.state == 0) {
+											alert('删除失败');
+										}
+										
+									}
+								};
+
+								oTd.appendChild(oAf);
+								oTd.appendChild(oAs);
+							}
+							
+							var oPage = obj.allPage;
+							// console.log(aA);
+							var i = 0;
+							for (var name in oPage) {
+								aA[i].href = 'javascript:test(\'' + oPage[name] + '\')';
+								i++;
+							}
+
+						}
+						function test(url)
+						{
+							$.ajax({
+								method:'get',
+								url:url,
+								data:null,
+								dataType:'json',
+								success:success
+							});
+						}
+				
+				</script>
+				
+			</div>
+			<!-- 敬请期待begin -->
+			<!-- 敬请期待end -->
+		</div>	
+                <!-- 右侧内容区end -->	
+                
+	</div>
+	<!-- 内容区end -->
+   
+</div>
+<div class="publishSuc display-none" id="tipMsg">发布成功</div>
+
+<!-- 头像裁剪弹窗end -->
+
+
+</body>
+	<script type="text/javascript" src="/static/js/person/ajax.js"></script>
+	<!-- 日期选择 -->
+	<script src="/static/js/person/ymdPicker.js"></script>
+	<!-- 地区选择 -->
+	<script src="/static/js/person/distpicker.data.js"></script>
+	<script src="/static/js/person/distpicker.js"></script>
+	<script src="/static/js/person/cropper.min.js"></script>
+	<script src="/static/js/person/user_center.js"></script>
+	<script src="/static/js/person/account_settings.js"></script>
+	<script src="/static/js/person/modifpwd.js"></script>
+	<script src="/static/js/person/common.js"></script>
+	<script src="/static/js/person/user.js"></script>
+	<script src="/static/js/person/login.js"></script>
+	<script src="/static/js/person/register.js"></script>
+	<script src="/static/js/person/md5_min.js"></script>
+	<script src="/static/js/person/out.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+   	<script src="/static/js/bootstrap.min.js"></script>
+</html>
